@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 export default function LandingPage() {
   const [activeSection, setActiveSection] = useState('home');
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timelineRef = useRef(null);
 
   const sections = {
@@ -36,6 +37,7 @@ export default function LandingPage() {
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
   };
 
   const teamMembers = [
@@ -67,7 +69,15 @@ export default function LandingPage() {
       {/* Navbar */}
       <nav className={`${styles.navbar} ${navbarScrolled ? styles.navbarScrolled : ''}`}>
         <div className={styles.navContent}>
-          <ul className={styles.navList}>
+          <button 
+            className={styles.mobileMenuButton}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`${styles.hamburger} ${isMobileMenuOpen ? styles.open : ''}`}></span>
+          </button>
+          
+          <ul className={`${styles.navList} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
             {Object.entries({
               home: 'HOME',
               about: 'ABOUT US',

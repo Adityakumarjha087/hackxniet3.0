@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import styles from '../styles/Register.module.css';
+import styles from '../styles/AuthForm.module.css';
 
 export default function Register() {
   const router = useRouter();
@@ -18,9 +18,7 @@ export default function Register() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [videoError, setVideoError] = useState(false);
   const [step, setStep] = useState(1);
-  const [applicationStatus, setApplicationStatus] = useState('pending');
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -64,8 +62,7 @@ export default function Register() {
         },
         body: JSON.stringify({
           ...formData,
-          resumeUrl,
-          applicationStatus: 'pending'
+          resumeUrl
         }),
       });
 
@@ -75,20 +72,12 @@ export default function Register() {
         throw new Error(data.message || 'Registration failed');
       }
 
-      // Store the token
-      localStorage.setItem('token', data.token);
-      
-      // Redirect to dashboard
-      router.push('/dashboard');
+      router.push('/login');
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleVideoError = () => {
-    setVideoError(true);
   };
 
   const nextStep = () => {
@@ -105,31 +94,34 @@ export default function Register() {
         return (
           <>
             <h2>Basic Information</h2>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="name">Full Name</label>
               <input
                 type="text"
+                id="name"
                 name="name"
-                placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
                 required
               />
             </div>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="email">Email Address</label>
               <input
                 type="email"
+                id="email"
                 name="email"
-                placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
             </div>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
+                id="password"
                 name="password"
-                placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
                 required
@@ -148,31 +140,34 @@ export default function Register() {
         return (
           <>
             <h2>Team Information</h2>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="teamName">Team Name</label>
               <input
                 type="text"
+                id="teamName"
                 name="teamName"
-                placeholder="Team Name"
                 value={formData.teamName}
                 onChange={handleChange}
                 required
               />
             </div>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="college">College/Organization</label>
               <input
                 type="text"
+                id="college"
                 name="college"
-                placeholder="College/Organization"
                 value={formData.college}
                 onChange={handleChange}
                 required
               />
             </div>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="phone">Phone Number</label>
               <input
                 type="tel"
+                id="phone"
                 name="phone"
-                placeholder="Phone Number"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -181,7 +176,7 @@ export default function Register() {
             <div className={styles.buttonGroup}>
               <button 
                 type="button" 
-                className={styles.secondaryButton}
+                className={`${styles.submitButton} ${styles.secondaryButton}`}
                 onClick={prevStep}
               >
                 Back
@@ -200,29 +195,40 @@ export default function Register() {
         return (
           <>
             <h2>Additional Information</h2>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="github">GitHub Profile URL</label>
               <input
                 type="text"
+                id="github"
                 name="github"
-                placeholder="GitHub Profile URL"
                 value={formData.github}
                 onChange={handleChange}
               />
             </div>
-            <div className={styles.inputGroup}>
+            <div className={styles.formGroup}>
+              <label htmlFor="linkedin">LinkedIn Profile URL</label>
               <input
                 type="text"
+                id="linkedin"
                 name="linkedin"
-                placeholder="LinkedIn Profile URL"
                 value={formData.linkedin}
                 onChange={handleChange}
               />
             </div>
-            
+            <div className={styles.formGroup}>
+              <label htmlFor="resume">Resume (PDF)</label>
+              <input
+                type="file"
+                id="resume"
+                name="resume"
+                accept=".pdf"
+                onChange={handleChange}
+              />
+            </div>
             <div className={styles.buttonGroup}>
               <button 
                 type="button" 
-                className={styles.secondaryButton}
+                className={`${styles.submitButton} ${styles.secondaryButton}`}
                 onClick={prevStep}
               >
                 Back
@@ -243,45 +249,22 @@ export default function Register() {
   };
 
   return (
-    <>
+    <div className={styles.authContainer}>
       <Head>
         <title>Register | HACKXNIET 3.0</title>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
-      <div className={styles.registerPage}>
-        <div className={styles.videoBackground}>
-          {!videoError ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className={styles.backgroundVideo}
-              onError={handleVideoError}
-            >
-              <source src="/images/adi2.png" type="video/png" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <div className={styles.fallbackBackground} />
-          )}
-          <div className={styles.videoOverlay}></div>
-        </div>
-        <div className={styles.formBox}>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progress} 
-              style={{ width: `${(step / 3) * 100}%` }}
-            />
-          </div>
-          {error && <div className={styles.error}>{error}</div>}
-          <form onSubmit={handleSubmit}>
-            {renderStep()}
-          </form>
-          <p className={styles.loginLink}>
-            Already have an account? <a href="/login">Login here</a>
-          </p>
+
+      <div className={styles.authForm}>
+        {error && <div className={styles.error}>{error}</div>}
+        <form onSubmit={handleSubmit}>
+          {renderStep()}
+        </form>
+
+        <div className={styles.switchForm}>
+          Already have an account? <a href="/login">Login here</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

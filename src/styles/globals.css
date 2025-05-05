@@ -1,26 +1,86 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'YourFont', serif;
+  background: url('/your-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  transition: color 0.2s;
+}
+
+.menu a:hover {
+  color: gold;
+}
+
+.register-btn {
+  background: gold;
+  color: #222;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.3rem;
+  margin: 2rem auto 0 auto;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+  display: block;
+}
+
+.register-btn:hover {
+  background: #ffd700;
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 3rem;
+  color: gold;
+  line-height: 1.1;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 700px) {
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .menu a {
+    font-size: 1.1rem;
+    margin: 0.2rem 0;
+  }
+  .register-btn {
+    width: 80vw;
+    font-size: 1.1rem;
+    padding: 0.7rem 0;
+    margin: 1.2rem auto 0 auto;
+  }
+  .title {
+    font-size: 1.7rem;
+    margin-top: 2rem;
+  }
+  body {
+    background-size: cover;
+    min-height: 100vh;
+    width: 100vw;
+  }
 }

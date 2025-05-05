@@ -14,12 +14,14 @@ export default function AuthForm({ mode = 'login' }) {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value || '' // Ensure value is never undefined
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -28,6 +30,16 @@ export default function AuthForm({ mode = 'login' }) {
     setLoading(true);
 
     try {
+      // Validate required fields
+      if (mode === 'register') {
+        const requiredFields = ['name', 'teamName', 'college', 'phone', 'email', 'password'];
+        const missingFields = requiredFields.filter(field => !formData[field]);
+        
+        if (missingFields.length > 0) {
+          throw new Error(`Please fill in all required fields: ${missingFields.join(', ')}`);
+        }
+      }
+
       const response = await fetch(`/api/auth/${mode}`, {
         method: 'POST',
         headers: {
@@ -43,13 +55,13 @@ export default function AuthForm({ mode = 'login' }) {
       }
 
       if (mode === 'login') {
-        // Store the token in localStorage
         localStorage.setItem('token', data.token);
-        // Redirect to dashboard
         router.push('/dashboard');
       } else {
-        // After registration, redirect to login
-        router.push('/login');
+        setShowDialog(true);
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 5000);
       }
     } catch (err) {
       setError(err.message);
@@ -161,6 +173,23 @@ export default function AuthForm({ mode = 'login' }) {
           )}
         </div>
       </div>
+
+      {/* Registration Success Dialog */}
+      {showDialog && (
+        <div className={styles.dialogOverlay}>
+          <div className={styles.dialog}>
+            <h3>Registration Successful!</h3>
+            <p>Your credentials:</p>
+            <div className={styles.credentials}>
+              <p><strong>Email:</strong> {formData.email}</p>
+              <p><strong>Password:</strong> {formData.password}</p>
+            </div>
+            <p className={styles.redirectMessage}>
+              Redirecting to dashboard in 5 seconds...
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 } 

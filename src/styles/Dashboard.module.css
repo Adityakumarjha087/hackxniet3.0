@@ -324,4 +324,176 @@
   .resumeCard h2 {
     font-size: 1.2rem;
   }
+}
+
+/* Teammates Section Styles */
+.teammatesCard {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+.teammatesCard h2 {
+  color: #FFD700;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.teammatesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.teammateItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 215, 0, 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.teammateItem span {
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.removeTeammate {
+  background: rgba(255, 77, 77, 0.2);
+  color: #ff4d4d;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.removeTeammate:hover {
+  background: rgba(255, 77, 77, 0.3);
+  transform: scale(1.05);
+}
+
+.addTeammateSection {
+  margin-top: 1.5rem;
+}
+
+.teammateForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.teammateInput {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.teammateInput:focus {
+  outline: none;
+  border-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.teammateFormButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.addTeammateButton,
+.showTeammateFormButton {
+  background: #FFD700;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: bold;
+}
+
+.addTeammateButton:hover,
+.showTeammateFormButton:hover {
+  background: #FFE44D;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.cancelButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.cancelButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.teamSizeInfo {
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  text-align: center;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+@media (max-width: 768px) {
+  .teammatesCard {
+    padding: 1.5rem;
+  }
+
+  .teammateItem {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .teammateInput {
+    padding: 0.8rem;
+  }
+
+  .addTeammateButton,
+  .showTeammateFormButton,
+  .cancelButton {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .teammatesCard {
+    padding: 1.2rem;
+  }
+
+  .teammatesCard h2 {
+    font-size: 1.5rem;
+  }
+
+  .teammateItem span {
+    font-size: 1rem;
+  }
+
+  .removeTeammate {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
 } 

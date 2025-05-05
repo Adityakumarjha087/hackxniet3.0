@@ -1,104 +1,272 @@
 .authContainer {
   min-height: 100vh;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  align-items: center;
+  background: url('/images/bg4.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
   padding: 2rem;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.authContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
 }
 
 .authForm {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 3.5rem;
+  border-radius: 20px;
   width: 100%;
   max-width: 500px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  z-index: 1;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+  margin: 2rem auto;
 }
 
 .authForm h2 {
-  color: #d4af37;
-  text-align: center;
-  margin-bottom: 2rem;
+  color: #FFD700;
   font-family: 'Cinzel Decorative', serif;
-  font-size: 2rem;
+  font-size: 2.8rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  letter-spacing: 2px;
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
 }
 
 .formGroup label {
   display: block;
-  margin-bottom: 0.5rem;
-  color: #ffffff;
-  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.8rem;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
 }
 
 .formGroup input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 14px 18px;
   border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  font-size: 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
 }
 
 .formGroup input:focus {
   outline: none;
-  border-color: #d4af37;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .submitButton {
   width: 100%;
-  padding: 1rem;
-  background: #d4af37;
-  color: #000000;
+  padding: 14px;
+  background: #FFD700;
+  color: #000;
   border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
+  border-radius: 10px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  letter-spacing: 1px;
 }
 
 .submitButton:hover {
-  background: #e8c757;
-  transform: translateY(-2px);
-}
-
-.submitButton:disabled {
-  background: #666;
-  cursor: not-allowed;
-  transform: none;
+  background: #FFE44D;
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
 .error {
-  background: rgba(255, 0, 0, 0.1);
-  color: #ff4444;
-  padding: 1rem;
-  border-radius: 5px;
-  margin-bottom: 1rem;
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+  padding: 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 1.8rem;
   text-align: center;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  font-family: 'Cinzel Decorative', serif;
 }
 
 .switchMode {
-  margin-top: 1.5rem;
   text-align: center;
-  color: #ffffff;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Cinzel Decorative', serif;
 }
 
 .switchMode a {
-  color: #d4af37;
+  color: #FFD700;
   text-decoration: none;
+  transition: all 0.3s ease;
   font-weight: bold;
-  transition: color 0.3s ease;
 }
 
 .switchMode a:hover {
-  color: #e8c757;
+  color: #FFE44D;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .authForm {
+    padding: 2.5rem;
+    margin: 1.5rem;
+  }
+
+  .authForm h2 {
+    font-size: 2.3rem;
+  }
+
+  .formGroup input {
+    padding: 12px 15px;
+  }
+
+  .submitButton {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .authContainer {
+    padding: 1rem;
+  }
+
+  .authForm {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .authForm h2 {
+    font-size: 2rem;
+  }
+
+  .formGroup label {
+    font-size: 1.1rem;
+  }
+
+  .formGroup input {
+    padding: 10px 12px;
+    font-size: 1rem;
+  }
+
+  .submitButton {
+    font-size: 1.1rem;
+  }
+}
+
+/* Dialog Styles */
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: dialogFadeIn 0.3s ease-out;
+}
+
+.dialog h3 {
+  color: #FFD700;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Cinzel Decorative', serif;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.dialog p {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.credentials {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.credentials p {
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+}
+
+.credentials strong {
+  color: #FFD700;
+  margin-right: 0.5rem;
+}
+
+.redirectMessage {
+  color: #FFD700 !important;
+  font-style: italic;
+  margin-top: 1.5rem;
+  font-size: 1rem !important;
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 2rem;
+  }
+
+  .dialog h3 {
+    font-size: 1.5rem;
+  }
+
+  .credentials {
+    padding: 1.2rem;
+  }
+
+  .credentials p {
+    font-size: 1rem;
+  }
 } 

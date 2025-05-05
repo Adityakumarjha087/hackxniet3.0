@@ -8,6 +8,9 @@ export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [teammates, setTeammates] = useState([]);
+  const [newTeammate, setNewTeammate] = useState('');
+  const [showTeammateForm, setShowTeammateForm] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,6 +36,7 @@ export default function Dashboard() {
 
       const userData = await response.json();
       setUser(userData);
+      setTeammates(userData.teammates || []);
     } catch (err) {
       setError(err.message);
       if (err.message === 'Invalid token' || err.message === 'Token expired') {
@@ -47,6 +51,67 @@ export default function Dashboard() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     router.push('/login');
+  };
+
+  const handleAddTeammate = async (e) => {
+    e.preventDefault();
+    if (teammates.length >= 4) {
+      setError('Maximum team size is 4 members');
+      return;
+    }
+
+    if (!newTeammate.trim()) {
+      setError('Please enter a teammate name');
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('/api/teammates/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ name: newTeammate })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add teammate');
+      }
+
+      const updatedUser = await response.json();
+      setTeammates(updatedUser.teammates);
+      setNewTeammate('');
+      setShowTeammateForm(false);
+      setError('');
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleRemoveTeammate = async (index) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('/api/teammates/remove', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ index })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to remove teammate');
+      }
+
+      const updatedUser = await response.json();
+      setTeammates(updatedUser.teammates);
+      setError('');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   if (loading) {
@@ -122,6 +187,62 @@ export default function Dashboard() {
                 <p>{user?.phone}</p>
               </div>
             </div>
+          </div>
+
+          {/* Teammates Section */}
+          <div className={styles.teammatesCard}>
+            <h2>Team Members</h2>
+            <div className={styles.teammatesList}>
+              {teammates.map((teammate, index) => (
+                <div key={index} className={styles.teammateItem}>
+                  <span>{teammate}</span>
+                  <button 
+                    onClick={() => handleRemoveTeammate(index)}
+                    className={styles.removeTeammate}
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+            
+            {teammates.length < 4 && (
+              <div className={styles.addTeammateSection}>
+                {showTeammateForm ? (
+                  <form onSubmit={handleAddTeammate} className={styles.teammateForm}>
+                    <input
+                      type="text"
+                      value={newTeammate}
+                      onChange={(e) => setNewTeammate(e.target.value)}
+                      placeholder="Enter teammate name"
+                      className={styles.teammateInput}
+                    />
+                    <div className={styles.teammateFormButtons}>
+                      <button type="submit" className={styles.addTeammateButton}>
+                        Add
+                      </button>
+                      <button 
+                        type="button" 
+                        onClick={() => setShowTeammateForm(false)}
+                        className={styles.cancelButton}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                ) : (
+                  <button 
+                    onClick={() => setShowTeammateForm(true)}
+                    className={styles.showTeammateFormButton}
+                  >
+                    Add Teammate
+                  </button>
+                )}
+              </div>
+            )}
+            <p className={styles.teamSizeInfo}>
+              Team Size: {teammates.length}/4 members
+            </p>
           </div>
 
           {user?.resumeUrl && (
