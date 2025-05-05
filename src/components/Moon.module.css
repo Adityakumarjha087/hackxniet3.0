@@ -1,0 +1,39 @@
+/* src/components/Moon.module.css */
+.moon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #f5f5f5);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    z-index: 2;
+  }
+  
+  .crater {
+    position: absolute;
+    background: #ddd;
+    border-radius: 50%;
+  }
+  
+  .crater:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    top: 30%;
+    left: 20%;
+  }
+  
+  .crater:nth-child(2) {
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 40%;
+  }
+  
+  .crater:nth-child(3) {
+    width: 25px;
+    height: 25px;
+    top: 60%;
+    left: 20%;
+  }

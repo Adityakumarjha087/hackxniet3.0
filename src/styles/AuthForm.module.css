@@ -1,0 +1,104 @@
+.authContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  padding: 2rem;
+}
+
+.authForm {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.authForm h2 {
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background: #d4af37;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background: #e8c757;
+  transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff4444;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.switchMode {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.switchMode a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.switchMode a:hover {
+  color: #e8c757;
+} 

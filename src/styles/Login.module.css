@@ -1,0 +1,264 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  padding: 1rem;
+}
+
+.loginBox {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.loginBox h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.loginButton {
+  width: 100%;
+  padding: 0.75rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+  background: #0056b3;
+}
+
+.error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.success {
+  background: #d4edda;
+  color: #155724;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loginPage {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.imageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/images/adi2.png') no-repeat center center;
+  background-size: cover;
+  filter: blur(4px);
+  z-index: 1;
+}
+
+.videoBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.backgroundVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fallbackBackground {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #000000, #1a1a1a);
+  position: relative;
+}
+
+.fallbackBackground::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/images/pattern.png') repeat;
+  opacity: 0.1;
+  animation: backgroundMove 20s linear infinite;
+}
+
+@keyframes backgroundMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.formBox {
+  background: rgba(0, 0, 0, 0.65);
+  padding: 2rem;
+  border-radius: 20px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  position: relative;
+  z-index: 3;
+  margin: 2rem;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.formBox h2 {
+  color: #d4af37;
+  font-family: 'Cinzel Decorative', serif;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.inputGroup input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.submitButton {
+  background-color: #d4af37;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.submitButton:hover {
+  background-color: #e8c757;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #d4af37;
+}
+
+.submitButton:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.registerLink {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.registerLink a {
+  color: #d4af37;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.registerLink a:hover {
+  color: #e8c757;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formBox {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .formBox h2 {
+    font-size: 1.8rem;
+  }
+
+  .inputGroup input {
+    padding: 10px 12px;
+  }
+
+  .submitButton {
+    padding: 10px 20px;
+  }
+}
+
+.adminNote {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
+} 
