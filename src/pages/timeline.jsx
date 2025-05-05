@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import styles from '../styles/Timeline.module.css';
+import styles from './timeline.module.css';
 
 const Timeline = () => {
   const events = [

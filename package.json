@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
+    "formidable": "^3.5.4",
     "framer-motion": "^12.9.4",
+    "googleapis": "^148.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1",
     "next": "15.3.1",
@@ -28,6 +31,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "postcss": "^8.5.3",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^10.1.6",
     "tailwindcss": "^4"
   }
 }
