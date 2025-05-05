@@ -236,23 +236,114 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Design */
+/* Enhanced Responsive Design */
 @media (max-width: 768px) {
-  .formBox {
-    padding: 2rem;
-    margin: 1rem;
+  .container {
+    padding: 1rem;
   }
 
-  .formBox h2 {
+  .loginBox {
+    padding: 1.5rem;
+    margin: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .loginBox h1 {
     font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .inputGroup {
+    margin-bottom: 1.2rem;
+  }
+
+  .inputGroup label {
+    font-size: 0.9rem;
   }
 
   .inputGroup input {
-    padding: 10px 12px;
+    padding: 0.8rem;
+    font-size: 0.9rem;
   }
 
-  .submitButton {
-    padding: 10px 20px;
+  .loginButton {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .error,
+  .success {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .registerLink {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.8rem;
+  }
+
+  .loginBox {
+    padding: 1.2rem;
+    margin: 0.8rem;
+  }
+
+  .loginBox h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .inputGroup {
+    margin-bottom: 1rem;
+  }
+
+  .inputGroup label {
+    font-size: 0.85rem;
+  }
+
+  .inputGroup input {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .loginButton {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .error,
+  .success {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .registerLink {
+    font-size: 0.85rem;
+  }
+}
+
+/* Add viewport meta tag styles */
+@media (max-width: 320px) {
+  .loginBox {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .loginBox h1 {
+    font-size: 1.3rem;
+  }
+
+  .inputGroup input {
+    padding: 0.6rem;
+  }
+
+  .loginButton {
+    padding: 0.6rem;
   }
 }
 
