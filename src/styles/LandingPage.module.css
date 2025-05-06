@@ -174,16 +174,16 @@
 }
 
 .hack {
-  font-size: 8rem;
+  font-size: 9rem;
 }
 
 .x {
-  font-size: 6rem;
+  font-size: 5rem;
   color: #FFD700;
 }
 
 .niet {
-  font-size: 8rem;
+  font-size: 9rem;
 }
 
 .version {
@@ -194,12 +194,16 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+
   .hack, .niet {
-    font-size: 6rem;
+    font-size: 7rem;
   }
   
   .x {
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
   
   .version {
@@ -209,7 +213,7 @@
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 15px 30px;
+    padding: 15px 20px;
   }
 
   .mobileMenuButton {
@@ -226,7 +230,7 @@
     left: -100%;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(8px);
     flex-direction: column;
     align-items: center;
@@ -259,12 +263,20 @@
     max-width: 300px;
   }
 
+  .title-wrapper {
+    margin-top: -2rem;
+    padding: 1rem;
+    gap: 0.2rem;
+    transform: scale(0.8);
+    transform-origin: center top;
+  }
+
   .hack, .niet {
-    font-size: 9rem;
+    font-size: 4rem;
   }
   
   .x {
-    font-size: 5rem;
+    font-size: 3rem;
   }
   
   .version {
@@ -272,18 +284,117 @@
     margin-left: 0.2rem;
   }
 
-  .title-wrapper {
-    margin-top: -2rem;
-    padding: 1rem;
-    gap: 0.2rem;
-    transform: scale(1);
-    transform-origin: center top;
+  .sectionContent {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .sectionContent h2 {
+    font-size: 2rem;
+  }
+
+  .sectionContent p {
+    font-size: 1.2rem;
+  }
+
+  /* About Section Mobile */
+  .aboutSection {
+    padding: 2rem 1rem;
+  }
+
+  .aboutSection h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .animatedAboutText {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 0.5rem;
+  }
+
+  .typingHighlight {
+    font-size: 1.2rem;
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  .fadeInText {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+  }
+
+  /* Timeline Section Mobile */
+  .timelineSection {
+    padding: 2rem 1rem;
+  }
+
+  .timeline {
+    padding: 1rem 0;
+  }
+
+  .timelineLine {
+    left: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, #d4af37, transparent);
+  }
+
+  .timelineItem {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    min-height: auto;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .timelineDot {
+    left: 20px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border: 3px solid #0a0a0a;
+  }
+
+  .timelineContent {
+    width: 100%;
+    margin: 0;
+    padding: 1.2rem;
+    font-size: 1rem;
+    animation: slideIn 0.5s ease-out;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(1px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .timelineDate {
+    font-size: 0.85rem;
+    color: #d4af37;
+    margin-bottom: 0.3rem;
+  }
+
+  .timelineTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .timelineDescription {
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
     padding: 10px 15px;
+  }
+
+  .title-wrapper {
+    padding: 0.8rem;
+    gap: 0.1rem;
+    transform: scale(0.7);
   }
 
   .hack, .niet {
@@ -309,14 +420,62 @@
     padding: 8px 20px;
   }
 
-  .title-wrapper {
-    padding: 0.8rem;
-    gap: 0.1rem;
-    transform: scale(0.95);
+  .sectionContent {
+    padding: 1rem;
+  }
+
+  .sectionContent h2 {
+    font-size: 1.8rem;
+  }
+
+  .sectionContent p {
+    font-size: 1.1rem;
+  }
+
+  .aboutSection h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .animatedAboutText {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .typingHighlight {
+    font-size: 1.1rem;
+  }
+
+  .fadeInText {
+    font-size: 0.95rem;
+  }
+
+  .timelineSection {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .timelineContent {
+    padding: 1rem;
+  }
+
+  .timelineDate {
+    font-size: 0.8rem;
+  }
+
+  .timelineTitle {
+    font-size: 1rem;
+  }
+
+  .timelineDescription {
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 360px) {
+  .title-wrapper {
+    transform: scale(0.6);
+  }
+
   .hack, .niet {
     font-size: 3rem;
   }
@@ -328,6 +487,18 @@
   .version {
     font-size: 1.8rem;
     margin-left: 0.1rem;
+  }
+
+  .navLink {
+    font-size: 1.1rem;
+  }
+
+  .sectionContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .sectionContent p {
+    font-size: 1rem;
   }
 }
 
@@ -355,6 +526,51 @@
   color: white;
   position: relative;
   overflow: hidden;
+  padding: 4rem 2rem;
+}
+
+.aboutSection h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #d4af37;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.aboutCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+}
+
+.aboutCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.aboutCard h3 {
+  color: #d4af37;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.aboutCard p {
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .teamSection,
@@ -388,29 +604,13 @@
 }
 
 .timelineSection {
-  background: 
-    linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.6)),
-    url('/images/adi3.png') no-repeat center center;
+  background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.6)),
+              url('/images/adi3.png') no-repeat center center;
   background-size: cover;
   padding: 5rem 0;
   color: white;
   position: relative;
   z-index: 1;
-  
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.sectionTitle {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  color: #d4af37;
-  font-family: 'Cinzel Decorative', serif;
 }
 
 .timeline {
@@ -455,7 +655,6 @@
 }
 
 .timelineItemLeft {
-  
   flex-direction: row;
 }
 
@@ -471,7 +670,6 @@
 
 .timelineItemLeft .timelineContent {
   margin-right: 20px;
-
   margin-left: 0;
   text-align: right;
 }
@@ -543,42 +741,6 @@
   color: #ffffff;
 }
 
-/* About Section Styles */
-.aboutGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.aboutCard {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 15px;
-  text-align: center;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  transition: all 0.3s ease;
-}
-
-.aboutCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-}
-
-.aboutCard h3 {
-  color: #d4af37;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  font-family: 'Cinzel Decorative', serif;
-}
-
-.aboutCard p {
-  color: #ffffff;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
 /* Footer Styles */
 .footer {
   width: 100%;
@@ -593,7 +755,7 @@
 
 .footerColumns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -771,112 +933,14 @@
   }
 }
 
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes dotPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
-  }
-}
-
-/* Animate timeline items */
-.timelineItemLeft {
-  animation: fadeInLeft 1s both;
-}
-
-.timelineItemRight {
-  animation: fadeInRight 1s both;
-}
-
-/* Animate dots */
-.timelineDot {
-  animation: dotPulse 2s infinite;
-}
-
-/* Content box hover effect */
-.timelineContent {
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-}
-.timelineContent:hover {
-  transform: scale(1.04) translateY(-4px);
-  box-shadow: 0 8px 32px 0 rgba(212, 175, 55, 0.25);
-  border-color: #d4af37;
-}
-
-/* Enhanced Responsive Design */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 15px 30px;
-  }
-
-  .navContent {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .navList {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-  }
-
-  .registerWrapper {
-    margin: 1rem 0 0 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  .registerNavButton {
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .main {
-    padding: 1rem;
-  }
-
-  .welcomeSection h1 {
-    font-size: 2rem;
-  }
-
-  .sectionContent {
-    padding: 2rem 1rem;
-    margin: 1rem;
-  }
-
-  .sectionContent h2 {
-    font-size: 2rem;
-  }
-
-  .sectionContent p {
-    font-size: 1.2rem;
-  }
-
   .aboutGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
   .footerColumns {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 2rem;
   }
 
   .footerColumn h3::after {
@@ -888,90 +952,94 @@
     justify-content: center;
   }
 
-  .timelineItemLeft,
-  .timelineItemRight {
+  /* Timeline Section Mobile */
+  .timelineSection {
+    padding: 2rem 1rem;
+  }
+
+  .timeline {
+    padding: 1rem 0;
+  }
+
+  .timelineLine {
+    left: 20px;
+    width: 2px;
+    background: linear-gradient(to bottom, #d4af37, transparent);
+  }
+
+  .timelineItem {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 40px;
+    min-height: auto;
+    margin-bottom: 2rem;
     width: 100%;
   }
 
-  .timelineItemLeft .timelineContent,
-  .timelineItemRight .timelineContent {
-    width: 90%;
-    margin: 1rem 0;
-    text-align: center;
-  }
-
   .timelineDot {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .hack, .x, .niet, .version {
-    font-size: 4rem;
-  }
-
-  .title-wrapper {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 10px 15px;
-  }
-
-  .navLink {
-    font-size: 1rem;
-  }
-
-  .sectionContent {
-    padding: 1.5rem 1rem;
-  }
-
-  .sectionContent h2 {
-    font-size: 1.8rem;
-  }
-
-  .sectionContent p {
-    font-size: 1.1rem;
+    left: 20px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border: 3px solid #0a0a0a;
   }
 
   .timelineContent {
     width: 100%;
+    margin: 0;
+    padding: 1.2rem;
+    font-size: 1rem;
+    animation: slideIn 0.5s ease-out;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(1px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .timelineDate {
+    font-size: 0.85rem;
+    color: #d4af37;
+    margin-bottom: 0.3rem;
+  }
+
+  .timelineTitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .timelineDescription {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutSection h2 {
+    font-size: 1.8rem;
+  }
+
+  .aboutCard h3 {
+    font-size: 1.3rem;
+  }
+
+  .aboutCard p {
+    font-size: 0.9rem;
+  }
+
+  .timelineContent {
     padding: 1rem;
-  }
-
-  .hack, .x, .niet, .version {
-    font-size: 3rem;
-  }
-
-  .footerColumn {
-    padding: 0;
-  }
-
-  .footerColumn ul li button {
     font-size: 0.9rem;
   }
 }
 
-/* Add viewport meta tag styles */
-@media (max-width: 320px) {
-  .sectionContent {
-    padding: 1rem;
+/* Mobile Timeline Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-
-  .sectionContent h2 {
-    font-size: 1.5rem;
-  }
-
-  .sectionContent p {
-    font-size: 1rem;
-  }
-
-  .hack, .x, .niet, .version {
-    font-size: 2.5rem;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
