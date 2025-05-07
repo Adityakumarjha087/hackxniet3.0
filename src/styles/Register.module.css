@@ -1,14 +1,15 @@
 .registerPage {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: auto;
   background-color: #000;
   color: #fff;
   font-family: 'Cinzel Decorative', serif;
+  padding: 2rem 1rem;
 }
 
 .videoBackground {
@@ -28,7 +29,7 @@
 
 .fallbackBackground {
   width: 100%;
-  height: 100%;
+  height: 45%;
   background: linear-gradient(45deg, #000000, #1a1a1a);
   position: relative;
 }
@@ -40,7 +41,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('C:\web\hackathon\public\video\adi2.mp4') repeat;
+  background: url('/video/adi.mp4') repeat;
   opacity: 0.1;
   animation: backgroundMove 20s linear infinite;
 }
@@ -65,197 +66,322 @@
 }
 
 .formBox {
-  background: rgba(0, 0, 0, 0.75);
-  padding: 3rem;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 4rem;
   border-radius: 20px;
-  max-width: 500px;
-  width: 100%;
-  text-align: center;
-  animation: fadeIn 1s ease-in-out;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+  width: 100%; /* <- Changed from 200% */
+  max-width: 700px;
   position: relative;
   z-index: 3;
-  margin: 2rem;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  margin: 2rem auto;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
-.progressBar {
+
+.title {
+  font-family: 'Cinzel Decorative', cursive;
+  text-align: center;
+  color: #FFD700;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  letter-spacing: 2px;
+}
+
+.formStep {
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  margin-bottom: 2rem;
-  overflow: hidden;
+  color: #fff;
+  padding: 1rem 0;
 }
 
-.progress {
-  height: 100%;
-  background: #d4af37;
-  transition: width 0.3s ease;
-}
-
-.formBox h2 {
-  color: #d4af37;
-  font-family: 'Cinzel Decorative', serif;
+.formStep h2 {
+  color: #FFD700;
   margin-bottom: 2rem;
-  font-size: 2rem;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  font-size: 1.8rem;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  letter-spacing: 1px;
 }
 
 .inputGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
 
 .inputGroup input {
   width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
   border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
   transition: all 0.3s ease;
 }
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #d4af37;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-}
-
-.inputGroup input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.fileLabel {
-  display: block;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
+}
+
+.genderOptions {
+  display: flex;
+  gap: 2rem;
+  margin-top: 0.8rem;
+  padding: 0.5rem 0;
+}
+
+.genderOption {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   cursor: pointer;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   transition: all 0.3s ease;
 }
 
-.fileLabel:hover {
-  border-color: #d4af37;
-  background: rgba(255, 255, 255, 0.15);
+.genderOption:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.fileInput {
-  display: none;
+.genderOption input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #FFD700;
+}
+
+.memberForm {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.memberForm h3 {
+  color: #FFD700;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.scrollableForm {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.scrollableForm::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollableForm::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.scrollableForm::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.5);
+  border-radius: 4px;
+}
+
+.scrollableForm::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.7);
+}
+
+.error {
+  background: rgba(255, 77, 77, 0.1);
+  color: #ff4d4d;
+  padding: 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  font-size: 1.1rem;
 }
 
 .buttonGroup {
   display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.submitButton,
+.secondaryButton {
+  flex: 1;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .submitButton {
-  background-color: #d4af37;
+  background: #FFD700;
   color: #000;
-  font-weight: bold;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cinzel Decorative', serif;
-  flex: 1;
-  font-size: 1rem;
 }
 
 .submitButton:hover {
-  background-color: #e8c757;
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #d4af37;
-}
-
-.submitButton:disabled {
-  background: #666;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+  background: #FFE44D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 .secondaryButton {
-  background-color: transparent;
-  color: #d4af37;
-  font-weight: bold;
-  padding: 12px 25px;
-  border: 1px solid #d4af37;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cinzel Decorative', serif;
-  flex: 1;
-  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .secondaryButton:hover {
-  background-color: rgba(212, 175, 55, 0.1);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
 }
 
-.error {
-  background: rgba(255, 0, 0, 0.1);
-  color: #ff4d4d;
-  padding: 1rem;
-  border-radius: 10px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  border: 1px solid rgba(255, 0, 0, 0.3);
+.requirementsBox {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-.loginLink {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: rgba(255, 255, 255, 0.7);
+.requirementsBox h3 {
+  color: #FFD700;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
 }
 
-.loginLink a {
-  color: #d4af37;
-  text-decoration: none;
+.requirementsBox ul {
+  list-style: none;
+  padding: 0;
+}
+
+.requirementsBox li {
+  margin-bottom: 0.8rem;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.teamSizeSelector {
+  margin-bottom: 2rem;
+}
+
+.teamSizeSelector p {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.sizeOptions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.sizeCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.loginLink a:hover {
-  color: #e8c757;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+.sizeCircle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+.sizeCircle.selected {
+  background: #FFD700;
+  color: #000;
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
-/* Responsive Design */
+.genderWarning {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.warning {
+  color: #ff4d4d;
+  font-size: 1.1rem;
+}
+
+.success {
+  color: #4CAF50;
+  font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
+  .registerPage {
+    padding: 1rem;
+  }
+
   .formBox {
-    padding: 2rem;
+    padding: 1.5rem;
     margin: 1rem;
   }
 
-  .formBox h2 {
-    font-size: 1.8rem;
+  .title {
+    font-size: 2rem;
   }
 
-  .inputGroup input {
-    padding: 10px 12px;
+  .formStep h2 {
+    font-size: 1.5rem;
   }
 
-  .submitButton,
-  .secondaryButton {
-    padding: 10px 20px;
+  .genderOptions {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .buttonGroup {
     flex-direction: column;
+  }
+
+  .scrollableForm {
+    max-height: 50vh;
+  }
+
+  .memberForm {
+    padding: 1.5rem;
+  }
+
+  .sizeOptions {
+    flex-wrap: wrap;
+  }
+
+  .sizeCircle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
   }
 }
 
@@ -269,5 +395,131 @@
   background-size: cover;
   filter: blur(4px);
   z-index: 1;
+}
+
+/* Success Dialog Styles */
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2.5rem;
+  border-radius: 15px;
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: dialogFadeIn 0.3s ease-out;
+}
+
+.dialog h3 {
+  color: #FFD700;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Cinzel Decorative', serif;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.dialog p {
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.whatsappLink {
+  display: inline-block;
+  background: #25D366;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.whatsappLink:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+}
+
+.continueButton {
+  background: #FFD700;
+  color: #000;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: bold;
+  width: 100%;
+}
+
+.continueButton:hover {
+  background: #FFE44D;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .dialog {
+    padding: 2rem;
+  }
+
+  .dialog h3 {
+    font-size: 1.5rem;
+  }
+
+  .whatsappLink,
+  .continueButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 1.5rem;
+  }
+
+  .dialog h3 {
+    font-size: 1.3rem;
+  }
+
+  .dialog p {
+    font-size: 1rem;
+  }
+
+  .whatsappLink,
+  .continueButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
 }
   
