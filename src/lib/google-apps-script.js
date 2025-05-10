@@ -2,7 +2,7 @@
  * Google Apps Script integration for form submissions
  */
 
-const APPS_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL;
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsj0s1_xxV3O0cbO4neEx7rsyK9TjAuehu6ScYVsNu6gXuwLNow00Th9IatLJmgf9t-A/exec";
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000; // 1 second
 
@@ -20,14 +20,14 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
  */
 export const submitToAppsScript = async (data) => {
   if (!APPS_SCRIPT_URL) {
-    throw new Error('Google Apps Script URL is not configured. Set NEXT_PUBLIC_GOOGLE_APPS_SCRIPT_URL environment variable.');
+    throw new Error('Google Apps Script URL is not configured.');
   }
 
   let lastError;
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     try {
       console.log(`Attempting to submit data (attempt ${attempt}/${MAX_RETRIES})`);
-      
+
       const response = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: {
@@ -48,7 +48,7 @@ export const submitToAppsScript = async (data) => {
       }
 
       const result = await response.json();
-      
+
       if (!response.ok || !result.success) {
         throw new Error(result.error || 'Failed to submit data');
       }
@@ -58,7 +58,7 @@ export const submitToAppsScript = async (data) => {
     } catch (error) {
       console.error(`Attempt ${attempt} failed:`, error);
       lastError = error;
-      
+
       if (attempt < MAX_RETRIES) {
         console.log(`Retrying in ${RETRY_DELAY}ms...`);
         await wait(RETRY_DELAY);
