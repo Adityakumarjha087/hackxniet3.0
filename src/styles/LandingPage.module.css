@@ -367,7 +367,7 @@
     width: 100%;
     margin: 0;
     padding: 1.2rem;
-    font-size: 1rem;
+    font-size: 11rem;
     animation: slideIn 0.5s ease-out;
     background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(1px);
@@ -381,7 +381,7 @@
   }
 
   .timelineTitle {
-    font-size: 1.1rem;
+    font-size: 3rem;
     margin-bottom: 0.3rem;
   }
 
@@ -524,6 +524,9 @@
   align-items: center;
   justify-content: center;
   background-attachment: fixed;
+  background: linear-gradient(rgba(10,10,10,0.2), rgba(10,10,10,0.2)),
+              url('/images/bg100.png') no-repeat center center;
+  background-size: cover;
 }
 
 /* Backgrounds for each section */
@@ -533,11 +536,37 @@
 }
 
 .aboutSection {
-  background: rgba(0, 0, 0, 0.9);
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url('/images/bg201.png') no-repeat center center;
+  background-size: cover;
   color: white;
   position: relative;
   overflow: hidden;
   padding: 4rem 2rem;
+  min-height: 100vh;
+  animation: fadeInBg 1.5s ease;
+}
+
+@keyframes fadeInBg {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.aboutContentAnimated {
+  animation: floatIn 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .aboutSection h2 {
@@ -558,7 +587,7 @@
 
 .aboutCard {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(5px); */
   padding: 2rem;
   border-radius: 15px;
   text-align: center;
@@ -584,34 +613,15 @@
   line-height: 1.6;
 }
 
-.teamSection,
-.contactSection {
-  background: url('/images/bg2.png') no-repeat center center;
-  background-size: cover;
-  color: white;
-}
-
-.teamSection {
-  background: linear-gradient(135deg, #000000, #1a1a1a);
-  color: #fff;
-  padding: 4rem 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.teamSection .sectionContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
-}
-
-.teamSection h2 {
-  color: #d4af37;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  font-family: 'Cinzel Decorative', serif;
-  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+.aboutBg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.2) 100%);
+  z-index: -1;
 }
 
 .timelineSection {
@@ -1015,7 +1025,7 @@
     width: 100%;
     margin: 0;
     padding: 1.2rem;
-    font-size: 1rem;
+    font-size: 11rem;
     animation: slideIn 0.5s ease-out;
     background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(1px);
@@ -1029,7 +1039,7 @@
   }
 
   .timelineTitle {
-    font-size: 1.1rem;
+    font-size: 3rem;
     margin-bottom: 0.3rem;
   }
 
@@ -1196,14 +1206,86 @@
   font-family: 'Cinzel Decorative', serif;
 }
 
+.sponsorsSection {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/bg3.png') no-repeat center center;
+  background-size: cover;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 4rem 2rem;
+  min-height: 60vh;
+  animation: fadeInBg 1.5s ease;
+}
+
+.sponsorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.sponsorCard {
+  background: rgba(0,0,0,0.6);
+  border-radius: 16px;
+  padding: 2rem 1rem 1.5rem 1rem;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  border: 1.3px solid rgba(212,175,55,0.18);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sponsorCard:hover {
+  transform: scale(1.045) translateY(-6px);
+  box-shadow: 0 16px 40px 0 rgba(212,175,55,0.25);
+  border: 2px solid #FFD700;
+}
+
+.sponsorImage {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px 0 rgba(212,175,55,0.10);
+  border: 2px solid #FFD70022;
+}
+
+.sponsorName {
+  color: #FFD700;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  font-family: 'Cinzel Decorative', serif;
+}
+
 .faqSection {
   padding: 4rem 1rem;
-  background: linear-gradient(rgba(10,10,10,0.6), rgba(10,10,10,0.6)),
-              url('/images/adi3.png') no-repeat center center;
+  background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
+              url('/images/bg100.png') no-repeat center center;
   background-size: cover;
   color: white;
   position: relative;
   z-index: 1;
+}
+
+.faqSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+  z-index: -1;
 }
 
 .faqContainer {
@@ -1288,4 +1370,59 @@
   .faqAnswer {
     font-size: 0.9rem;
   }
+}
+.big-animated-text {
+  display: block;
+  font-size: 3rem;         /* Make it big */
+  font-weight: bold;       /* Make it bold */
+  text-align: center;      /* Center it */
+  margin: 2rem 0;
+  animation: popIn 1.5s ease;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.customBg1 {
+  background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+              url('/images/bg201.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.customBg1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%);
+  z-index: -1;
+}
+
+.customBg2 {
+  background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)),
+              url('/images/bg100.png') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.customBg2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+  z-index: -1;
 }

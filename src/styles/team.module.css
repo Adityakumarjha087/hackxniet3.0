@@ -1,0 +1,161 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(9, 9, 10, 0.7) 0%, rgba(255,255,255,0.15) 100%);
+  border-radius: 16px;
+  padding: 1.5rem 1rem 1.25rem 1rem;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  border: 1.3px solid rgba(255,255,255,0.18);
+  transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s, border 0.3s;
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.7s ease;
+  overflow: visible;
+}
+
+.card:hover {
+  transform: scale(1.045) translateY(-6px);
+  box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.35);
+  border: 2px solid #4f8cff;
+}
+
+.avatarAccent {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 110px;
+  background: radial-gradient(circle, #4f8cff 60%, transparent 100%);
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(8px);
+  opacity: 0.5;
+}
+
+.imageContainer {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 0.75rem auto;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 12px 0 rgba(79,140,255,0.15);
+  background: #fff;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name, .role, .socialLinks {
+  color: #fff;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.25rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.role {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.icon {
+  font-size: 1.25rem;
+  color: #fff;
+  transition: color 0.3s, transform 0.3s;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.12));
+}
+
+.icon:hover {
+  color: #FFD700;
+  transform: scale(1.2);
+}
+
+.card .name, .card .role, .card .icon { color: #fff; }
+
+.card:nth-child(1) .name, .card:nth-child(1) .role, .card:nth-child(1) .icon { color: #FFD700; }
+.card:nth-child(2) .name, .card:nth-child(2) .role, .card:nth-child(2) .icon { color: #185a9d; }
+.card:nth-child(3) .name, .card:nth-child(3) .role, .card:nth-child(3) .icon { color: #43cea2; }
+.card:nth-child(4) .name, .card:nth-child(4) .role, .card:nth-child(4) .icon { color: #ff9800; }
+.card:nth-child(5) .name, .card:nth-child(5) .role, .card:nth-child(5) .icon { color: #ee9ca7; }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  .teamGrid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .imageContainer {
+    width: 80px;
+    height: 80px;
+  }
+  .avatarAccent {
+    width: 80px;
+    height: 80px;
+    top: 10px;
+  }
+}
+
+.heading {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #FFD700;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 24px rgba(255,215,0,0.18), 0 1.5px 6px rgba(0,0,0,0.18);
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+  font-family: 'Harry P', cursive;
+} 

@@ -1,80 +1,62 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
+import MobileTimeline from '../components/MobileTimeline';
 import styles from './timeline.module.css';
 
-const Timeline = () => {
-  const events = [
-    {
-      id: 1,
-      date: "October 15",
-      title: "Registrations Open",
-      description: "Sign up for the hackathon begins",
-      icon: "📅"
-    },
-    {
-      id: 2,
-      date: "November 5",
-      title: "Team Formation Deadline",
-      description: "Last day to form and register your team",
-      icon: "👥"
-    },
-    {
-      id: 3,
-      date: "November 15",
-      title: "Idea Submission",
-      description: "Submit your project proposal",
-      icon: "💡"
-    },
-    {
-      id: 4,
-      date: "November 20-25",
-      title: "Mentorship Sessions",
-      description: "Get guidance from industry experts",
-      icon: "🧑‍🏫"
-    },
-    {
-      id: 5,
-      date: "December 1-3",
-      title: "Hackathon Event",
-      description: "36 hours of coding and innovation",
-      icon: "⌨️"
-    },
-    {
-      id: 6,
-      date: "December 5",
-      title: "Results Announcement",
-      description: "Winners will be announced",
-      icon: "🏆"
-    }
-  ];
+// This will be replaced with actual timeline data
+const timelineData = [
+  {
+    date: 'Date 1',
+    title: 'Event 1',
+    description: 'Description for event 1'
+  },
+  // Add more timeline events here
+];
+
+export default function Timeline() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
-    <section className={styles.timelineSection}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Hackathon Timeline</h2>
-        <div className={styles.timeline}>
-          <div className={styles.timelineLine}></div>
-          {events.map((event, index) => (
-            <motion.div 
-              key={event.id}
-              className={styles.timelineItem}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className={styles.timelineDot}></div>
-              <div className={styles.timelineContent}>
-                <div className={styles.timelineIcon}>{event.icon}</div>
-                <div className={styles.timelineDate}>{event.date}</div>
-                <h3 className={styles.timelineTitle}>{event.title}</h3>
-                <p className={styles.timelineDescription}>{event.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+    <>
+      <Head>
+        <title>Timeline | HackX</title>
+        <meta name="description" content="HackX Timeline" />
+      </Head>
 
-export default Timeline;
+      <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-4xl font-bold text-center text-gray-900 mb-12">
+            Timeline
+          </h1>
+
+          {isMobile ? (
+            <MobileTimeline />
+          ) : (
+            <div className={styles.timeline}>
+              {timelineData.map((event, index) => (
+                <div key={index} className={styles.timelineItem}>
+                  <div className={styles.timelineContent}>
+                    <h3 className="text-xl font-semibold text-gray-900">{event.title}</h3>
+                    <p className="text-sm text-gray-600 mb-2">{event.date}</p>
+                    <p className="text-gray-700">{event.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </main>
+    </>
+  );
+}

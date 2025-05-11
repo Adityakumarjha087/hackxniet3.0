@@ -13,6 +13,8 @@ export default function Document() {
           href="https://fonts.cdnfonts.com/css/harry-p"
           rel="stylesheet"
         />
+        <link rel="preload" href="/images/sponsors-bg.jpg" as="image" />
+        <link rel="preload" href="/images/faq-bg.jpg" as="image" />
       </Head>
       <body>
         <Main />

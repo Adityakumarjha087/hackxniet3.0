@@ -2,6 +2,9 @@ import Head from 'next/head';
 import { useRef, useState, useEffect } from 'react';
 import styles from '../styles/LandingPage.module.css';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+//import TeamSection from '../components/TeamSection';
+
 
 export default function LandingPage() {
   const [activeSection, setActiveSection] = useState('home');
@@ -40,23 +43,23 @@ export default function LandingPage() {
     setIsMobileMenuOpen(false);
   };
 
-  const teamMembers = [
-    {
-      name: "John Doe",
-      role: "Lead Organizer",
-      image: "/images/team1.jpg"
-    },
-    {
-      name: "Jane Smith",
-      role: "Technical Head",
-      image: "/images/team2.jpg"
-    },
-    {
-      name: "Mike Johnson",
-      role: "Event Coordinator",
-      image: "/images/team3.jpg"
-    }
-  ];
+  // const teamMembers = [
+  //   {
+  //     name: "John Doe",
+  //     role: "Lead Organizer",
+  //     image: "/images/team1.jpg"
+  //   },
+  //   {
+  //     name: "Jane Smith",
+  //     role: "Technical Head",
+  //     image: "/images/team2.jpg"
+  //   },
+  //   {
+  //     name: "Mike Johnson",
+  //     role: "Event Coordinator",
+  //     image: "/images/team3.jpg"
+  //   }
+  // ];
 
   return (
     <div className={styles.fullPageContainer}>
@@ -85,12 +88,20 @@ export default function LandingPage() {
               contact: 'CONTACT US'
             }).map(([key, label]) => (
               <li key={key}>
-                <button
-                  onClick={() => scrollToSection(sections[key])}
-                  className={`${styles.navLink} ${activeSection === key ? styles.activeLink : ''}`}
-                >
-                  {label}
-                </button>
+                {key === 'team' ? (
+                  <Link href="/team">
+                    <button className={`${styles.navLink} ${activeSection === key ? styles.activeLink : ''}`}>
+                      {label}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => scrollToSection(sections[key])}
+                    className={`${styles.navLink} ${activeSection === key ? styles.activeLink : ''}`}
+                  >
+                    {label}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -112,6 +123,7 @@ export default function LandingPage() {
             playsInline
             className={styles.backgroundVideo}
           >
+            filter: brightness(1.3);
             <source src="/video/adi.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -126,7 +138,10 @@ export default function LandingPage() {
       </section>
 
       {/* About Section */}
-      <section ref={sections.about} className={`${styles.pageSection} ${styles.aboutSection}`}>
+      <section ref={sections.about} className={`${styles.pageSection} ${styles.aboutSection} relative overflow-hidden`}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80 z-0"></div>
+        <div className="absolute inset-0 bg-[url('/images/circuit-pattern.png')] opacity-10 z-0"></div>
+        
         <motion.div 
           className={styles.sectionContent}
           initial={{ opacity: 0 }}
@@ -135,66 +150,141 @@ export default function LandingPage() {
           viewport={{ once: true }}
           style={{ background: 'none', boxShadow: 'none', border: 'none', padding: 0 }}
         >
-          <motion.h1
-            initial={{ y: -50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
+            className="relative mb-8"
           >
-            <span className={styles.typingEffect}>About HACKXNIET 3.0</span>
-          </motion.h1>
+            <h1 style={{ fontFamily: 'Cinzel Decorative, serif', fontWeight: 700, fontSize: '3.5rem', color: '#d4af37', textAlign: 'center', marginBottom: '0.5rem', textShadow: '0 0 10px rgba(212,175,55,0.5)' }}>
+              Hack-X-NIET 3.0
+            </h1>
+            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
+          </motion.div>
           
-          <motion.div 
-            className={styles.animatedAboutText}
-            initial={{ opacity: 0, y: 30 }}
+          <motion.h2
+            initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
+            className="text-3xl md:text-4xl text-center mb-12 text-[#ffd700] relative"
           >
-            <motion.span 
-              className={styles.typingHighlight}
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+            Fueling Innovation, Forging Impact
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              transition={{ duration: 1, delay: 0.8 }}
               viewport={{ once: true }}
-            >
-              Innovate
-            </motion.span>
-            <motion.span 
-              className={styles.typingHighlight}
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              viewport={{ once: true }}
-            >
-              Collaborate
-            </motion.span>
-            <motion.span 
-              className={styles.typingHighlight}
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
-              viewport={{ once: true }}
-            >
-              Compete
-            </motion.span>
-            <motion.div 
-              className={styles.fadeInText}
+              className="absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-[#ffd700] to-transparent"
+            ></motion.div>
+          </motion.h2>
+
+          <motion.div 
+            className="max-w-5xl mx-auto text-center relative z-10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="space-y-6 mb-12">
+              <motion.p 
+                className="text-xl md:text-2xl text-white leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                viewport={{ once: true }}
+              >
+                Get ready to ignite your imagination at Hack-X-NIET 3.0, the ultimate 36-hour offline coding odyssey, hosted by NIET's <span className="text-[#d4af37] font-semibold relative group">
+                  EKUME & Reboot Clubs
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#d4af37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                </span>.
+              </motion.p>
+
+              <motion.p 
+                className="text-xl md:text-2xl text-white leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+                viewport={{ once: true }}
+              >
+                Join forces with 400+ innovators from across the nation, where lines of code meet groundbreaking ideas and mentorship meets ambition.
+              </motion.p>
+            </div>
+
+            <div className="mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-black/40 p-8 rounded-xl border border-[#d4af37]/20 backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:border-[#d4af37]/40 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                    {/* <span className="text-5xl mb-4 block transform transition-transform duration-300 group-hover:scale-110">🛠️</span> */}
+                    {/* <p className="text-xl text-white">Build real-world prototypes</p> */}
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.3 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-black/40 p-8 rounded-xl border border-[#d4af37]/20 backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:border-[#d4af37]/40 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                    {/* <span className="text-5xl mb-4 block transform transition-transform duration-300 group-hover:scale-110">🤝</span> */}
+                    <p className="text-xl text-white">Connect with tech leaders and visionaries</p>
+                  </div>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.5 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div className="bg-black/40 p-8 rounded-xl border border-[#d4af37]/20 backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:border-[#d4af37]/40 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                    {/* <span className="text-5xl mb-4 block transform transition-transform duration-300 group-hover:scale-110">🎯</span> */}
+                    <p className="text-xl text-white">Showcase your brilliance in a fast-paced, impact-driven coding marathon</p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            <motion.p 
+              className="text-xl md:text-2xl mb-12 text-white leading-relaxed bg-black/30 p-6 rounded-lg border border-[#d4af37]/20"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              transition={{ duration: 0.5, delay: 1.7 }}
               viewport={{ once: true }}
             >
-              Join brilliant minds, solve real-world problems, and unleash your creativity. Whether you are a coding wizard, a design enthusiast, or a tech visionary, HACKXNIET 3.0 is your stage to shine.
-            </motion.div>
+              Form your dream squad (4–6 members, one female mandatory) and turn ideas into solutions that matter.
+            </motion.p>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
+              transition={{ duration: 0.6, delay: 1.9 }}
               viewport={{ once: true }}
-              style={{ marginTop: '1rem' }}
+              className="text-2xl md:text-3xl font-bold text-[#d4af37] flex items-center justify-center gap-3 bg-black/30 p-6 rounded-lg border border-[#d4af37]/20"
             >
-              <b>Are you ready to code the future?</b>
+              <motion.span 
+                className="text-4xl"
+                animate={{ 
+                  rotate: [0, 10, -10, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              >
+                🌟
+              </motion.span>
+              <span className="big-animated-text">Registrations Opening Soon — Are you ready to hack the future?</span>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -214,14 +304,13 @@ export default function LandingPage() {
               style={{ willChange: 'height' }}
             />
             {[
-              { title: 'Registration Opens', date: 'June 1, 2024' },
-              { title: 'Team Formation', date: 'June 5, 2024' },
-              { title: 'Idea Submission', date: 'June 10, 2024' },
-              { title: 'Shortlisting', date: 'June 15, 2024' },
-              { title: 'Hackathon Day 1', date: 'June 20, 2024' },
-              { title: 'Hackathon Day 2', date: 'June 21, 2024' },
-              { title: 'Final Presentations', date: 'June 22, 2024' },
-              { title: 'Winners Announced', date: 'June 23, 2024' },
+              { title: 'Registration Opens', date: 'May 13, 2025' },
+              { title: 'Team Formation', date: 'May 30, 2025' },
+              { title: 'Profile Review', date: '16-18 Aug 2025'},
+              { title: 'Submit Work', date: '19-20 Aug 2025'}, 
+              { title: 'Mentoring', date: '20-21 Aug 2025'},
+              { title: 'Final Round', date: '22 Aug 2025'},
+              { title: 'Results', date: '23 Aug 2025'},
             ].map((item, idx) => (
               <motion.div
                 key={item.title}
@@ -268,11 +357,23 @@ export default function LandingPage() {
       </section>
 
       {/* Sponsors Section */}
-      <section className={styles.pageSection}>
-        <div style={{ maxWidth: 900, margin: '0 auto', padding: '4rem 1rem 2rem 1rem', background: 'none', boxShadow: 'none', border: 'none' }}>
-          <h1 className={styles.typingEffect} style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Sponsors</h1>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center', alignItems: 'center', minHeight: '200px' }}>
-            {/* Sponsor logos/images will go here */}
+      <section className={styles.sponsorsSection}>
+        <h1 style={{ fontFamily: 'Cinzel Decorative, serif', fontWeight: 700, fontSize: '2.5rem', color: '#FFD700', textAlign: 'center', marginBottom: '2rem', textShadow: '0 0 10px rgba(212,175,55,0.5)' }}>
+          Sponsors
+        </h1>
+        <div className={styles.sponsorGrid}>
+          {/* Example sponsors, replace with real data as needed */}
+          <div className={styles.sponsorCard}>
+            <img src="/images/sponsor1.png" alt="Sponsor 1" className={styles.sponsorImage} />
+            <div className={styles.sponsorName}>Sponsor One</div>
+          </div>
+          <div className={styles.sponsorCard}>
+            <img src="/images/sponsor2.png" alt="Sponsor 2" className={styles.sponsorImage} />
+            <div className={styles.sponsorName}>Sponsor Two</div>
+          </div>
+          <div className={styles.sponsorCard}>
+            <img src="/images/sponsor3.png" alt="Sponsor 3" className={styles.sponsorImage} />
+            <div className={styles.sponsorName}>Sponsor Three</div>
           </div>
         </div>
       </section>
@@ -300,8 +401,8 @@ export default function LandingPage() {
             <h3>Address</h3>
             <div className={styles.address}>
               NIET, Greater Noida<br/>
-              Email: hackathon@example.com<br/>
-              Phone: +91 1234567890
+              Email: ekumeclub@gmail.com<br/>
+              Phone: +91 00000000
             </div>
             <div style={{ marginTop: '1rem' }}>
               <a href="/privacy-policy" style={{ color: '#d4af37', textDecoration: 'underline' }}>Privacy Policy</a>

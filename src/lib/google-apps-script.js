@@ -3,8 +3,9 @@
  */
 
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxsj0s1_xxV3O0cbO4neEx7rsyK9TjAuehu6ScYVsNu6gXuwLNow00Th9IatLJmgf9t-A/exec";
-const MAX_RETRIES = 3;
-const RETRY_DELAY = 1000; // 1 second
+const MAX_RETRIES = 2; // Reduced from 3 to 2
+const RETRY_DELAY = 500; // Reduced from 1000ms to 500ms
+const REQUEST_TIMEOUT = 5000; // 5 seconds timeout
 
 /**
  * Wait for a specified time
@@ -12,6 +13,15 @@ const RETRY_DELAY = 1000; // 1 second
  * @returns {Promise<void>}
  */
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+/**
+ * Create a timeout promise
+ * @param {number} ms - Timeout in milliseconds
+ * @returns {Promise<never>}
+ */
+const timeout = (ms) => new Promise((_, reject) => 
+  setTimeout(() => reject(new Error('Request timeout')), ms)
+);
 
 /**
  * Submit data to Google Apps Script with retry logic
@@ -28,16 +38,20 @@ export const submitToAppsScript = async (data) => {
     try {
       console.log(`Attempting to submit data (attempt ${attempt}/${MAX_RETRIES})`);
 
-      const response = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          action: 'appendData',
-          data: data
+      // Race between the fetch request and timeout
+      const response = await Promise.race([
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'appendData',
+            data: data
+          }),
         }),
-      });
+        timeout(REQUEST_TIMEOUT)
+      ]);
 
       // Handle non-JSON responses
       const contentType = response.headers.get('content-type');
@@ -58,6 +72,11 @@ export const submitToAppsScript = async (data) => {
     } catch (error) {
       console.error(`Attempt ${attempt} failed:`, error);
       lastError = error;
+
+      // Don't retry on timeout or invalid response format
+      if (error.message === 'Request timeout' || error.message === 'Invalid response format from server') {
+        throw error;
+      }
 
       if (attempt < MAX_RETRIES) {
         console.log(`Retrying in ${RETRY_DELAY}ms...`);

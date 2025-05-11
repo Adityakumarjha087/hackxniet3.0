@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import styles from '../styles/Register.module.css';
+import { useRouter } from 'next/router';
 
 const Confetti = dynamic(() => import('react-confetti'), { ssr: false });
 
@@ -10,6 +11,7 @@ export default function Register() {
   const [step, setStep] = useState(1);
   const [teamSize, setTeamSize] = useState(3);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   const [formData, setFormData] = useState({
     teamName: '',
@@ -29,6 +31,7 @@ export default function Register() {
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -98,19 +101,11 @@ export default function Register() {
   };
 
   const validateStep2 = () => {
-    if (!formData.hasFemaleMember) {
-      alert('At least one female member is required in the team (including leader)');
-      return false;
-    }
-    return true;
+    return true; // Allow proceeding to next step
   };
 
   const validateStep3 = () => {
-    if (!formData.hasFemaleMember) {
-      alert('At least one female member is required in the team (including leader)');
-      return false;
-    }
-    return true;
+    return true; // No validation during this step
   };
 
   const handleSubmit = async (e) => {
@@ -122,14 +117,17 @@ export default function Register() {
       formData.members.some(member => member.gender === 'female');
     
     if (!hasFemaleMember) {
-      setError('At least one female participant is required in the team (including leader)');
+      // Play sound effect
+      const audio = new Audio('/error-sound.mp3');
+      audio.play().catch(err => console.log('Audio play failed:', err));
+      
+      // Show modal
+      setShowModal(true);
       return;
     }
 
-    if (!validateStep3()) {
-      return;
-    }
-
+    // Optimistic UI update
+    setShowSuccess(true);
     setIsLoading(true);
     
     try {
@@ -147,14 +145,18 @@ export default function Register() {
       console.log('Registration response:', data);
 
       if (!response.ok) {
+        setShowSuccess(false);
         throw new Error(data.message || 'Registration failed');
       }
 
-      if (data.success) {
-        setShowSuccess(true);
-      } else {
+      if (!data.success) {
+        setShowSuccess(false);
         throw new Error(data.message || 'Registration failed');
       }
+
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 3000);
     } catch (error) {
       console.error('Registration error:', error);
       setError(error.message || 'An unexpected error occurred');
@@ -261,16 +263,6 @@ export default function Register() {
             />
             <span>Female</span>
           </label>
-          <label className={styles.genderOption}>
-            <input
-              type="radio"
-              name="leaderGender"
-              value="other"
-              checked={formData.leaderGender === 'other'}
-              onChange={() => handleGenderChange('other')}
-            />
-            <span>Other</span>
-          </label>
         </div>
       </div>
       
@@ -337,11 +329,7 @@ export default function Register() {
       </div>
       
       <div className={styles.genderWarning}>
-        {!formData.hasFemaleMember ? (
-          <p className={styles.warning}>⚠️ Your team currently has no female members</p>
-        ) : (
-          <p className={styles.success}>✓ Your team meets the gender requirement</p>
-        )}
+        <p className={styles.warning}>⚠️ Note: Your team must include at least one female member (this can be the leader or any teammate)</p>
       </div>
       
       <div className={styles.buttonGroup}>
@@ -354,7 +342,7 @@ export default function Register() {
         </button>
         <button
           type="button"
-          onClick={() => validateStep2() && setStep(3)}
+          onClick={() => setStep(3)}
           className={styles.submitButton}
         >
           Continue
@@ -497,36 +485,33 @@ export default function Register() {
 
   return (
     <div className={styles.registerPage}>
+      <div className={styles.imageBackground}></div>
       <Head>
         <title>Team Registration | HACKXNIET 3.0</title>
         <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
 
-      <div className={styles.videoBackground}>
-        <video autoPlay loop muted playsInline className={styles.backgroundVideo}>
-          <source src="/video/adi.mp4" type="video/mp4" />
-        </video>
-        <div className={styles.fallbackBackground}></div>
-      </div>
+      {showModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h2>❗ Registration Requirement</h2>
+            <p>Your team must include at least one female member (this can be the leader or any teammate)</p>
+            <button onClick={() => setShowModal(false)} className={styles.modalButton}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
-      <div className={styles.videoOverlay}></div>
+      {showSuccess && <Confetti width={windowSize.width} height={windowSize.height} />}
 
       <div className={styles.formBox}>
         <h1 className={styles.title}>HACKXNIET 3.0</h1>
-        
-        <div className={styles.progressBar}>
-          <div 
-            className={styles.progress} 
-            style={{ width: `${(step / 3) * 100}%` }}
-          ></div>
-        </div>
-
         {step === 1 && renderStep1()}
         {step === 2 && renderStep2()}
         {step === 3 && renderStep3()}
       </div>
 
-      {/* Success Dialog */}
       {showSuccess && (
         <div className={styles.dialogOverlay}>
           <div className={styles.dialog}>

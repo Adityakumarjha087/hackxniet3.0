@@ -325,13 +325,17 @@
 }
 
 .genderWarning {
-  margin: 1.5rem 0;
-  text-align: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
 }
 
-.warning {
-  color: #ff4d4d;
-  font-size: 1.1rem;
+.genderWarning .warning {
+  color: #856404;
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 .success {
@@ -391,9 +395,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('/images/adi2.png') no-repeat center center;
+  background: url('/images/bg4.png') no-repeat center center;
   background-size: cover;
-  filter: blur(4px);
+  filter: blur(2px);
   z-index: 1;
 }
 
@@ -520,6 +524,65 @@
   .continueButton {
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
+  }
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal h2 {
+  color: #e74c3c;
+  margin-bottom: 1rem;
+}
+
+.modal p {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.modalButton {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.modalButton:hover {
+  background: #2980b9;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
   
