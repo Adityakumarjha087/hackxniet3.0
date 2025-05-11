@@ -26,7 +26,6 @@ export default function Timeline() {
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
   return (
     <>
       <Head>

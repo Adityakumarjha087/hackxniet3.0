@@ -485,10 +485,8 @@ export default function Register() {
 
   return (
     <div className={styles.registerPage}>
-      <div className={styles.imageBackground}></div>
-      <Head>
+      <div className={styles.imageBackground}></div>      <Head>
         <title>Team Registration | HACKXNIET 3.0</title>
-        <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
       </Head>
 
       {showModal && (
