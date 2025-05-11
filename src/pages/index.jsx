@@ -11,10 +11,13 @@ export default function LandingPage() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const timelineRef = useRef(null);
+  const galleryTrackRef = useRef(null);
+  const [galleryScroll, setGalleryScroll] = useState(0);
 
   const sections = {
     home: useRef(null),
     about: useRef(null),
+    gallery: useRef(null),
     team: useRef(null),
     contact: useRef(null)
   };
@@ -29,6 +32,14 @@ export default function LandingPage() {
           const { offsetTop, offsetHeight } = ref.current;
           if (scrollPosition > offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(key);
+            
+            // Handle gallery scroll
+            if (key === 'gallery' && galleryTrackRef.current) {
+              const gallerySection = ref.current;
+              const progress = (scrollPosition - offsetTop) / offsetHeight;
+              const maxScroll = galleryTrackRef.current.scrollWidth - galleryTrackRef.current.clientWidth;
+              setGalleryScroll(progress * maxScroll);
+            }
           }
         }
       });
@@ -37,6 +48,12 @@ export default function LandingPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (galleryTrackRef.current) {
+      galleryTrackRef.current.style.transform = `translateX(-${galleryScroll}px)`;
+    }
+  }, [galleryScroll]);
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -136,6 +153,7 @@ export default function LandingPage() {
           <div className={styles.version}>3.0</div>
         </div>
       </section>
+      <div className={styles.transitionHomeToAbout}></div>
 
       {/* About Section */}
       <section ref={sections.about} className={`${styles.pageSection} ${styles.aboutSection} relative overflow-hidden`}>
@@ -289,6 +307,49 @@ export default function LandingPage() {
           </motion.div>
         </motion.div>
       </section>
+      <div className={styles.transitionAboutToGallery}></div>
+
+      {/* Gallery Section */}
+      <section ref={sections.gallery} className={`${styles.pageSection} ${styles.gallerySection}`}>
+        <div className={styles.galleryContainer}>
+          <motion.h2
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className={styles.galleryTitle}
+          >
+            Event Gallery
+          </motion.h2>
+          
+          <div className={styles.galleryWrapper}>
+            <div ref={galleryTrackRef} className={styles.galleryTrack}>
+              {[1, 2, 3, 4, 5, 6].map((index) => (
+                <motion.div
+                  key={index}
+                  className={styles.galleryItem}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className={styles.galleryImageWrapper}>
+                    <img
+                      src={`/images/gallery/${index}.jpg`}
+                      alt={`Gallery image ${index}`}
+                      className={styles.galleryImage}
+                    />
+                    <div className={styles.galleryOverlay}>
+                      <span className={styles.galleryCaption}>HackX NIET {index}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className={styles.transitionGalleryToTimeline}></div>
 
       {/* Timeline Section */}
       <section className={styles.timelineSection}>
@@ -334,6 +395,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <div className={styles.transitionTimelineToFaq}></div>
 
       {/* FAQ Section */}
       <section className={styles.pageSection}>
@@ -355,6 +417,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      <div className={styles.transitionFaqToSponsors}></div>
 
       {/* Sponsors Section */}
       <section className={styles.sponsorsSection}>
@@ -376,6 +439,55 @@ export default function LandingPage() {
             <div className={styles.sponsorName}>Sponsor Three</div>
           </div>
         </div>
+      </section>
+      <div className={styles.transitionSponsorsToTeam}></div>
+
+      {/* Team Section
+      <section ref={sections.team} className={`${styles.pageSection} ${styles.teamSection}`}>
+        <div className={styles.teamContainer}>
+          <motion.h2
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className={styles.teamTitle}
+          >
+            Meet Our Team
+          </motion.h2>
+          
+          <div className={styles.teamWrapper}>
+            <div className={styles.teamTrack}>
+              {[1, 2, 3].map((index) => (
+                <motion.div
+                  key={index}
+                  className={styles.teamItem}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className={styles.teamImageWrapper}>
+                    <img
+                      src={`/images/team${index}.jpg`}
+                      alt={`Team member ${index}`}
+                      className={styles.teamImage}
+                    />
+                  </div>
+                  <div className={styles.teamInfo}>
+                    <h3 className={styles.teamName}>Team Member {index}</h3>
+                    <p className={styles.teamRole}>Role</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section> */}
+      <div className={styles.transitionTeamToContact}></div>
+
+      {/* Contact Section */}
+      <section ref={sections.contact} className={`${styles.pageSection} ${styles.contactSection}`}>
+        {/* Contact form content */}
       </section>
 
       {/* Footer */}

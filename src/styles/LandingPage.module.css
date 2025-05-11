@@ -527,6 +527,7 @@
   background: linear-gradient(rgba(10,10,10,0.2), rgba(10,10,10,0.2)),
               url('/images/bg100.png') no-repeat center center;
   background-size: cover;
+  z-index: 1;
 }
 
 /* Backgrounds for each section */
@@ -1425,4 +1426,220 @@
   bottom: 0;
   background: linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
   z-index: -1;
+}
+
+/* Gallery Section Styles */
+.gallerySection {
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.galleryContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.galleryTitle {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3.5rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.galleryWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  perspective: 1000px;
+}
+
+.galleryTrack {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+  padding: 20px 0;
+  transform-style: preserve-3d;
+}
+
+.galleryItem {
+  flex: 0 0 calc(33.333% - 1.33rem);
+  min-width: 300px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.galleryImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.galleryImageWrapper:hover {
+  transform: scale(1.05) translateZ(20px);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.galleryImageWrapper:hover .galleryImage {
+  transform: scale(1.1);
+}
+
+.galleryOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: translateZ(10px);
+}
+
+.galleryImageWrapper:hover .galleryOverlay {
+  opacity: 1;
+}
+
+.galleryCaption {
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: 'Cinzel Decorative', serif;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  transform: translateZ(20px);
+}
+
+/* Add scroll indicator */
+.galleryWrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+  opacity: 0.5;
+}
+
+@media (max-width: 1024px) {
+  .galleryItem {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryTitle {
+    font-size: 2.5rem;
+  }
+  
+  .galleryItem {
+    flex: 0 0 calc(100% - 1rem);
+  }
+  
+  .galleryImageWrapper {
+    height: 300px;
+  }
+}
+
+/* Gradient Overlay Transitions */
+.sectionTransition {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #1a1a1a 90%);
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  position: relative;
+  pointer-events: none;
+}
+
+/* Custom Section Transitions */
+.transitionHomeToAbout {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(25, 63, 158, 0.178) 0%,         /* Transparent top for BG1 fade */
+    rgba(25, 63, 158, 0.178) 25%,     /* Mid-blend between BG1 & BG2 */
+    rgba(25, 63, 158, 0.178) 50%,       /* Full blend zone */
+    rgb(8,52,76) 75%,   /* Begin fading to BG2 tones */
+    rgb(8,52,76)100%      /* Fully transparent to let BG2 show */
+  );
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+
+
+.transitionAboutToGallery {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, 
+  transparent, #060606 90%);
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.transitionGalleryToTimeline {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #1a0d1a 90%);
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.transitionTimelineToFaq {
+  width: 100%;
+  height: 80px;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to bottom, transparent, #1c3444 90%);
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.transitionFaqToSponsors {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #1a131a 90%);
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+
+.transitionTeamToContact {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #1a191a 90%);
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
 }
