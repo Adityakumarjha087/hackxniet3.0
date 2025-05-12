@@ -12,23 +12,17 @@ interface GalleryImage {
   height: number;
 }
 
-const galleryImages: GalleryImage[] = [
-  { src: '/images/gallery/image1.jpg', alt: 'Hackathon Event 1', width: 800, height: 600 },
-  { src: '/images/gallery/image2.jpg', alt: 'Hackathon Event 2', width: 800, height: 600 },
-  { src: '/images/gallery/image3.jpg', alt: 'Hackathon Event 3', width: 800, height: 600 },
-  { src: '/images/gallery/image4.jpg', alt: 'Hackathon Event 4', width: 800, height: 600 },
-  { src: '/images/gallery/image5.jpg', alt: 'Hackathon Event 5', width: 800, height: 600 },
-  { src: '/images/gallery/image6.jpg', alt: 'Hackathon Event 6', width: 800, height: 600 },
-  // Add more images as needed
-];
+interface GalleryProps {
+  images?: GalleryImage[];
+}
 
-export default function Gallery() {
+export default function Gallery({ images = [] }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   return (
     <div className={styles.galleryContainer}>
       <div className={styles.galleryGrid}>
-        {galleryImages.map((image, index) => (
+        {images.map((image, index) => (
           <motion.div
             key={index}
             className={styles.galleryItem}
