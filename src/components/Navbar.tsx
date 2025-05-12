@@ -15,6 +15,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -22,9 +23,23 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkTheme(savedTheme === 'dark');
+      document.documentElement.classList.toggle('light-theme', savedTheme === 'light');
+    }
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkTheme;
+    setIsDarkTheme(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    document.documentElement.classList.toggle('light-theme', !newTheme);
+  };
 
   return (
     <motion.header
@@ -34,7 +49,7 @@ const Navbar = () => {
         isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className={`container mx-auto px-6 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between h-16">
           <motion.div
             initial={{ opacity: 0 }}
@@ -47,27 +62,71 @@ const Navbar = () => {
             </Link>
           </motion.div>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={`relative group px-3 py-2 text-sm font-medium transition-colors duration-300 ${
-                    pathname === item.path
-                      ? 'text-purple-600'
-                      : 'text-gray-700 hover:text-purple-600'
-                  }`}
-                >
-                  {item.name}
-                  <motion.span
-                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 transform origin-left transition-transform duration-300 ${
-                      pathname === item.path ? 'scale-x-100' : 'scale-x-0'
-                    } group-hover:scale-x-100`}
-                  />
-                </Link>
-              ))}
-            </div>
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`relative group px-3 py-2 text-sm font-medium transition-colors duration-300 ${
+                  pathname === item.path
+                    ? 'text-purple-600'
+                    : 'text-gray-700 hover:text-purple-600'
+                }`}
+              >
+                {item.name}
+                <motion.span
+                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 transform origin-left transition-transform duration-300 ${
+                    pathname === item.path ? 'scale-x-100' : 'scale-x-0'
+                  } group-hover:scale-x-100`}
+                />
+              </Link>
+            ))}
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full transition-colors duration-300 focus:outline-none"
+              aria-label="Toggle theme"
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: isDarkTheme ? 0 : 180 }}
+                transition={{ duration: 0.3 }}
+                className="w-6 h-6"
+              >
+                {isDarkTheme ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-6 h-6 text-yellow-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-6 h-6 text-gray-800"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                )}
+              </motion.div>
+            </button>
           </div>
 
           <motion.div
@@ -91,7 +150,51 @@ const Navbar = () => {
           </motion.div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleTheme}
+              className="p-2 mr-2 rounded-full transition-colors duration-300 focus:outline-none"
+              aria-label="Toggle theme"
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: isDarkTheme ? 0 : 180 }}
+                transition={{ duration: 0.3 }}
+                className="w-6 h-6"
+              >
+                {isDarkTheme ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-6 h-6 text-yellow-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    className="w-6 h-6 text-gray-800"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                )}
+              </motion.div>
+            </button>
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-purple-600 focus:outline-none"

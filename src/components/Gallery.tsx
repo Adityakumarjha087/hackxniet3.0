@@ -1,8 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from '../styles/LandingPage.module.css';
 
 interface GalleryImage {
   src: string;
@@ -11,64 +12,85 @@ interface GalleryImage {
   height: number;
 }
 
-interface GalleryProps {
-  images: GalleryImage[];
-}
+const galleryImages: GalleryImage[] = [
+  { src: '/images/gallery/image1.jpg', alt: 'Hackathon Event 1', width: 800, height: 600 },
+  { src: '/images/gallery/image2.jpg', alt: 'Hackathon Event 2', width: 800, height: 600 },
+  { src: '/images/gallery/image3.jpg', alt: 'Hackathon Event 3', width: 800, height: 600 },
+  { src: '/images/gallery/image4.jpg', alt: 'Hackathon Event 4', width: 800, height: 600 },
+  { src: '/images/gallery/image5.jpg', alt: 'Hackathon Event 5', width: 800, height: 600 },
+  { src: '/images/gallery/image6.jpg', alt: 'Hackathon Event 6', width: 800, height: 600 },
+  // Add more images as needed
+];
 
-const Gallery = ({ images }: GalleryProps) => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.6, -0.05, 0.01, 0.99],
-      },
-    },
-  };
-
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+export default function Gallery() {
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   return (
-    <motion.div
-      ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6"
-    >
-      {images.map((image, index) => (
-        <motion.div
-          key={index}
-          variants={itemVariants}
-          className="relative aspect-square overflow-hidden rounded-lg shadow-lg"
-        >
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-500"
-            priority={index < 3}
-          />
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-};
+    <div className={styles.galleryContainer}>
+      <div className={styles.galleryGrid}>
+        {galleryImages.map((image, index) => (
+          <motion.div
+            key={index}
+            className={styles.galleryItem}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            onClick={() => setSelectedImage(image)}
+          >
+            <div className={styles.galleryImageWrapper}>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                className={styles.galleryImage}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQrJyEkKSQ4MDAwMDAwODAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDD/2wBDAR0XFyAeIB4gHh4gIB4lHSUdJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSUlJSX/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+              />
+              <div className={styles.galleryImageOverlay}>
+                <span>{image.alt}</span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
 
-export default Gallery; 
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className={styles.modalOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              className={styles.modalContent}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className={styles.modalClose}
+                onClick={() => setSelectedImage(null)}
+              >
+                ×
+              </button>
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={selectedImage.width}
+                height={selectedImage.height}
+                className={styles.modalImage}
+              />
+              <p className={styles.modalCaption}>{selectedImage.alt}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+} 

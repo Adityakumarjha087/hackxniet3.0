@@ -17,6 +17,7 @@ export default function LandingPage() {
   const sections = {
     home: useRef(null),
     about: useRef(null),
+    themes: useRef(null),
     gallery: useRef(null),
     team: useRef(null),
     contact: useRef(null)
@@ -99,6 +100,8 @@ export default function LandingPage() {
             {Object.entries({
               home: 'HOME',
               about: 'ABOUT US',
+              themes: 'THEMES',
+              gallery: 'GALLERY',
               team: 'TEAM',
               contact: 'CONTACT US'
             }).map(([key, label]) => (
@@ -119,11 +122,9 @@ export default function LandingPage() {
                 )}
               </li>
             ))}
-          </ul>          <div className={styles.registerWrapper}>            <a href="/register">
+          </ul>          <div className={styles.registerWrapper}>            
+            <a href="/register">
               <button className={styles.registerNavButton}>REGISTER</button>
-            </a>
-            <a href="/docs/hackxniet_brochure.pdf" download="HACKXNIET_3.0_Brochure.pdf" target="_blank" rel="noopener noreferrer" className={styles.brochureLink}>
-              <button className={styles.brochureButton}>BROCHURE</button>
             </a>
           </div>
         </div>
@@ -151,219 +152,119 @@ export default function LandingPage() {
         <div className={styles.sectionTitleTop}>
           <h2>Welcome to HackxNiet 3.0</h2>
         </div>
-      </section>      <div className={styles.transitionHomeToAbout}></div>      {/* About Section */}
-      <section ref={sections.about} className={`${styles.pageSection} ${styles.aboutSection} relative overflow-hidden max-w-full`}>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/80 z-0"></div>
-        <div className="absolute inset-0 bg-[url('/images/circuit-pattern.png')] opacity-10 z-0"></div>
-        
+      </section>      <div className={styles.transitionHomeToAbout}>
+        <div className={styles.magicParticle}></div>
+        <div className={styles.magicParticle}></div>
+        <div className={styles.magicParticle}></div>
+        <div className={styles.magicParticle}></div>
+        <div className={styles.magicParticle}></div>
+        <h2 className={styles.transitionHeading}>HACKXNIET3.0</h2>
+      </div>      {/* About Section */}
+      <section ref={sections.about} className={`${styles.pageSection} ${styles.aboutSection}`}>
         <div className={styles.sectionHeading}>
           <h2>About Us</h2>
           <div className={styles.headingUnderline}></div>
         </div>
 
-        <motion.div 
-          className={styles.sectionContent}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          style={{ background: 'none', boxShadow: 'none', border: 'none', padding: 0, maxWidth: '100%', overflowX: 'hidden' }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative mb-8"
-          >
-            <h1 style={{ fontFamily: 'Cinzel Decorative, serif', fontWeight: 700, fontSize: '3.5rem', color: '#d4af37', textAlign: 'center', marginBottom: '0.5rem', textShadow: '0 0 10px rgba(212,175,55,0.5)' }}>
-              Hack-X-NIET 3.0
-            </h1>
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
-          </motion.div>
-          
-          <motion.h2
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl text-center mb-12 text-[#ffd700] relative"
-          >
-            Fueling Innovation, Forging Impact
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "100%" }}
-              transition={{ duration: 1, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-[#ffd700] to-transparent"
-            ></motion.div>
-          </motion.h2>
-
-          <motion.div 
-            className="max-w-5xl mx-auto text-center relative z-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="space-y-6 mb-12">
-              <motion.p 
-                className="text-xl md:text-2xl text-white leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                viewport={{ once: true }}
-              >
-                Get ready to ignite your imagination at Hack-X-NIET 3.0, the ultimate 36-hour offline coding odyssey, hosted by NIET's <span className="text-[#d4af37] font-semibold relative group">
-                  EKUME & Reboot Clubs
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#d4af37] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </span>.
-              </motion.p>
-
-              <motion.p 
-                className="text-xl md:text-2xl text-white leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.9 }}
-                viewport={{ once: true }}
-              >
-                Join forces with 400+ innovators from across the nation, where lines of code meet groundbreaking ideas and mentorship meets ambition.
-              </motion.p>
-            </div>            <div className="mb-16 w-full px-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-full">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="bg-black/40 p-8 rounded-xl border border-[#d4af37]/20 backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:border-[#d4af37]/40 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                    {/* <span className="text-5xl mb-4 block transform transition-transform duration-300 group-hover:scale-110">🛠️</span> */}
-                    {/* <p className="text-xl text-white">Build real-world prototypes</p> */}
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.3 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="bg-black/40 p-8 rounded-xl border border-[#d4af37]/20 backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:border-[#d4af37]/40 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                    {/* <span className="text-5xl mb-4 block transform transition-transform duration-300 group-hover:scale-110">🤝</span> */}
-                    <p className="text-xl text-white">Connect with tech leaders and visionaries</p>
-                  </div>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.5 }}
-                  viewport={{ once: true }}
-                  className="group"
-                >
-                  <div className="bg-black/40 p-8 rounded-xl border border-[#d4af37]/20 backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:border-[#d4af37]/40 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                    {/* <span className="text-5xl mb-4 block transform transition-transform duration-300 group-hover:scale-110">🎯</span> */}
-                    <p className="text-xl text-white">Showcase your brilliance in a fast-paced, impact-driven coding marathon</p>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            <motion.p 
-              className="text-xl md:text-2xl mb-12 text-white leading-relaxed bg-black/30 p-6 rounded-lg border border-[#d4af37]/20"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.7 }}
-              viewport={{ once: true }}
-            >
+        <div className={styles.aboutContent}>
+          {/* Main Content */}
+          <div className={styles.aboutTextContent}>
+            <p>
+              Get ready to ignite your imagination at <span className={styles.highlightText}>Hack-X-NIET 3.0</span>, 
+              the ultimate 36-hour offline coding odyssey, hosted by NIET's <span className={styles.highlightText}>EKUME & Reboot Clubs</span>.
+            </p>
+            <p>
+              HACKXNIET 3.0 brings together over 400 brilliant minds from across the nation, creating a vibrant ecosystem 
+              of innovation and collaboration. This is more than just a hackathon – it's a platform where ideas transform 
+              into impactful solutions, where creativity meets technology, and where the next generation of tech leaders emerges.
+            </p>
+            <p>
+              Connect with industry veterans, tech visionaries, and seasoned mentors who will guide you throughout your journey. 
+              Our expert mentors will provide invaluable insights, helping you refine your ideas and build robust solutions.
+            </p>
+            <p>
+              At HACKXNIET 3.0, we focus on creating solutions that matter. You'll have the opportunity to work on real-world 
+              challenges, develop functional prototypes, and present your innovations to a panel of distinguished judges.
+            </p>
+            <p>
               Form your dream squad (4–6 members, one female mandatory) and turn ideas into solutions that matter.
-            </motion.p>            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1.9 }}
-              viewport={{ once: true }}
-              className="text-xl md:text-2xl font-bold text-[#d4af37] flex items-center justify-center gap-3 bg-black/30 p-6 rounded-lg border border-[#d4af37]/20"
-              style={{ maxWidth: '90%', overflow: 'hidden' }}
-            >
-              <motion.span 
-                className="text-3xl"
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                🌟
-              </motion.span>
-              <span className="big-animated-text" style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', wordWrap: 'break-word' }}>Registrations Opening Soon — Are you ready to hack the future?</span>
-            </motion.div>
-            
-            {/* Follow Us Section */}
+            </p>
+          </div>
+
+          {/* Registration Banner */}
+          <div className={styles.registrationBanner}>
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 2.1 }}
-              viewport={{ once: true }}
-              className="mt-16 text-center"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
             >
-              <h3 className="text-2xl font-bold text-[#d4af37] mb-6">Follow Us</h3>
-              <div className={styles.socialIconsContainer}>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    className={styles.socialIcon}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                  </motion.div>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: -5 }}
-                    className={styles.socialIcon}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                    </svg>
-                  </motion.div>
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    className={styles.socialIcon}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                      <rect x="2" y="9" width="4" height="12"></rect>
-                      <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </motion.div>
-                </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: -5 }}
-                    className={styles.socialIcon}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </motion.div>
-                </a>
-              </div>
+              <h3 className={styles.registrationText}>
+                Registrations Opening Soon — Are you ready to hack the future?
+              </h3>
             </motion.div>
-          </motion.div>
-        </motion.div>      </section>      <div className={styles.transitionAboutToThemes}></div>
+          </div>
+
+          {/* Social Section */}
+          <div className={styles.socialSection}>
+            <h3 className={styles.socialTitle}>Follow Us</h3>
+            <div className={styles.socialIconsContainer}>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className={styles.socialIcon}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </motion.div>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                  className={styles.socialIcon}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                  </svg>
+                </motion.div>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className={styles.socialIcon}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                </motion.div>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                  className={styles.socialIcon}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                </motion.div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles.transitionAboutToThemes}></div>
       
       {/* Themes Section */}
-      <section className={`${styles.pageSection} ${styles.themesSection}`}>
+      <section ref={sections.themes} className={`${styles.pageSection} ${styles.themesSection}`}>
         <div className={styles.themesContainer}>
           <div className={styles.sectionHeading}>
             <h2>Hackathon Themes</h2>
@@ -431,56 +332,48 @@ export default function LandingPage() {
         </div>
       </section>      <div className={styles.transitionThemesToGallery}></div>      {/* Gallery Section */}
       <section ref={sections.gallery} className={`${styles.pageSection} ${styles.gallerySection}`}>
+        <div className={styles.sectionHeading}>
+          <h2>Event Gallery</h2>
+          <div className={styles.headingUnderline}></div>
+        </div>
         <div className={styles.galleryContainer}>
-          <div className={styles.sectionHeading}>
-            <h2>Past Event Gallery</h2>
-            <div className={styles.headingUnderline}></div>
-          </div>
-          <motion.h2
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className={styles.galleryTitle}
-          >
-            Highlights from Previous Editions
-          </motion.h2>
-          
-          <div className={styles.galleryWrapper}>
-            <div ref={galleryTrackRef} className={styles.galleryTrack}>
-              {[
-                { id: 1, title: "Opening Ceremony", img: "/images/gallery/hackathon1.jpg" },
-                { id: 2, title: "Team Collaboration", img: "/images/gallery/hackathon2.jpg" },
-                { id: 3, title: "Mentorship Session", img: "/images/gallery/hackathon3.jpg" },
-                { id: 4, title: "Midnight Coding", img: "/images/gallery/hackathon4.jpg" },
-                { id: 5, title: "Project Presentation", img: "/images/gallery/hackathon5.jpg" },
-                { id: 6, title: "Award Ceremony", img: "/images/gallery/hackathon6.jpg" }
-              ].map((item) => (
-                <motion.div
-                  key={item.id}
-                  className={styles.galleryItem}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: item.id * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className={styles.galleryImageWrapper}>
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className={styles.galleryImage}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = "/images/gallery/placeholder.jpg";
-                      }}
-                    />
-                    <div className={styles.galleryOverlay}>
-                      <span className={styles.galleryCaption}>{item.title}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className={styles.galleryGrid}>
+            {[
+              { id: 1, img: "/images/gallery/g1 (1).jpeg" },
+              { id: 2, img: "/images/gallery/g1 (2).jpeg" },
+              { id: 3, img: "/images/gallery/g1 (3).jpeg" },
+              { id: 4, img: "/images/gallery/g1 (4).jpeg" },
+              { id: 5, img: "/images/gallery/g1 (5).jpeg" },
+              { id: 6, img: "/images/gallery/g1 (6).jpeg" },
+              { id: 7, img: "/images/gallery/g1 (7).jpeg" },
+              { id: 8, img: "/images/gallery/g1 (8).jpeg" },
+              { id: 9, img: "/images/gallery/g1 (9).jpeg" },
+              { id: 10, img: "/images/gallery/g1 (10).jpeg" },
+              { id: 11, img: "/images/gallery/g1 (11).jpeg" },
+              { id: 12, img: "/images/gallery/g1 (12).jpeg" }
+            ].map((item) => (
+              <motion.div
+                key={item.id}
+                className={styles.galleryItem}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: (item.id % 3) * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className={styles.galleryImageWrapper}>
+                  <img
+                    src={item.img}
+                    alt={`Gallery Image ${item.id}`}
+                    className={styles.galleryImage}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/images/placeholder.jpg";
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section><div className={styles.transitionGalleryToTimeline}></div>
@@ -492,7 +385,6 @@ export default function LandingPage() {
             <h2>Event Timeline</h2>
             <div className={styles.headingUnderline}></div>
           </div>
-          <h1 className={styles.sectionTitle}>Timeline</h1>
           <div className={styles.timeline} ref={timelineRef} style={{ position: 'relative' }}>
             <motion.div
               className={styles.timelineLine}
@@ -532,31 +424,9 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>      <div className={styles.transitionTimelineToFaq}></div>
+      </section>
 
-      {/* FAQ Section */}
-      <section className={styles.pageSection}>
-        <div style={{ maxWidth: 800, margin: '0 auto', padding: '4rem 1rem 2rem 1rem', background: 'none', boxShadow: 'none', border: 'none' }}>
-          <div className={styles.sectionHeading}>
-            <h2>Frequently Asked Questions</h2>
-            <div className={styles.headingUnderline}></div>
-          </div>
-          <div style={{ fontSize: '1.1rem', color: '#fff', lineHeight: 1.7 }}>
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: '0.5rem' }}>What is HACKXNIET 3.0?</h3>
-              <p>HACKXNIET 3.0 is a national-level hackathon bringing together innovators, coders, and creators to solve real-world problems.</p>
-            </div>
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: '0.5rem' }}>Who can participate?</h3>
-              <p>Students from all colleges and backgrounds are welcome to participate in teams.</p>
-            </div>
-            <div style={{ marginBottom: '2rem' }}>
-              <h3 style={{ color: '#ffd700', fontSize: '1.2rem', marginBottom: '0.5rem' }}>How do I register?</h3>
-              <p>Registration is online via the official website. Form your team and sign up!</p>
-            </div>
-          </div>
-        </div>
-      </section>      <div className={styles.transitionFaqToSponsors}></div>
+      <div className={styles.transitionTimelineToSponsors}></div>
 
       {/* Sponsors Section */}
       <section className={styles.sponsorsSection}>
@@ -567,100 +437,164 @@ export default function LandingPage() {
         <div className={styles.sponsorGrid}>
           {/* Example sponsors, replace with real data as needed */}
           <div className={styles.sponsorCard}>
-            <img src="/images/sponsor1.png" alt="Sponsor 1" className={styles.sponsorImage} />
+            <div className={styles.sponsorImageWrapper}>
+              <img src="/images/sponsor1.png" alt="Sponsor 1" className={styles.sponsorImage} />
+            </div>
             <div className={styles.sponsorName}>Sponsor One</div>
           </div>
           <div className={styles.sponsorCard}>
-            <img src="/images/sponsor2.png" alt="Sponsor 2" className={styles.sponsorImage} />
+            <div className={styles.sponsorImageWrapper}>
+              <img src="/images/sponsor2.png" alt="Sponsor 2" className={styles.sponsorImage} />
+            </div>
             <div className={styles.sponsorName}>Sponsor Two</div>
           </div>
           <div className={styles.sponsorCard}>
-            <img src="/images/sponsor3.png" alt="Sponsor 3" className={styles.sponsorImage} />
+            <div className={styles.sponsorImageWrapper}>
+              <img src="/images/sponsor3.png" alt="Sponsor 3" className={styles.sponsorImage} />
+            </div>
             <div className={styles.sponsorName}>Sponsor Three</div>
           </div>
         </div>
+        <div className={styles.sponsorsBottomContent}>
+          <a href="/docs/hackxniet_brochure.pdf" download="HACKXNIET_3.0_Brochure.pdf" target="_blank" rel="noopener noreferrer">
+            <button className={styles.sponsorsBrochureButton}>DOWNLOAD BROCHURE</button>
+          </a>
+        </div>
       </section>
-      <div className={styles.transitionSponsorsToTeam}></div>
 
-      {/* Team Section
-      <section ref={sections.team} className={`${styles.pageSection} ${styles.teamSection}`}>
-        <div className={styles.teamContainer}>
-          <motion.h2
-            initial={{ opacity: 0, y: -30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className={styles.teamTitle}
-          >
-            Meet Our Team
-          </motion.h2>
+      <div className={styles.transitionSponsorsToFaq}></div>
+
+      {/* FAQ Section */}
+      <section className={styles.faqSection}>
+        <div className={styles.sectionHeading}>
+          <h2>Frequently Asked Questions</h2>
+          <div className={styles.headingUnderline}></div>
+        </div>
+        <div className={styles.faqContainer}>
+          {/* Magical floating particles */}
+          <div className={styles.faqParticle}></div>
+          <div className={styles.faqParticle}></div>
+          <div className={styles.faqParticle}></div>
+          <div className={styles.faqParticle}></div>
+          <div className={styles.faqParticle}></div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>What is HACKXNIET 3.0?</h3>
+            <p className={styles.faqAnswer}>HACKXNIET 3.0 is a national-level hackathon bringing together innovators, coders, and creators to solve real-world problems.</p>
+          </div>
           
-          <div className={styles.teamWrapper}>
-            <div className={styles.teamTrack}>
-              {[1, 2, 3].map((index) => (
-                <motion.div
-                  key={index}
-                  className={styles.teamItem}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className={styles.teamImageWrapper}>
-                    <img
-                      src={`/images/team${index}.jpg`}
-                      alt={`Team member ${index}`}
-                      className={styles.teamImage}
-                    />
-                  </div>
-                  <div className={styles.teamInfo}>
-                    <h3 className={styles.teamName}>Team Member {index}</h3>
-                    <p className={styles.teamRole}>Role</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>Who can participate?</h3>
+            <p className={styles.faqAnswer}>Students from all colleges and backgrounds are welcome to participate in teams of 4-6 members, with at least one female member per team.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>How do I register for the hackathon?</h3>
+            <p className={styles.faqAnswer}>Registration can be done through our official website. Click on the Register button in the navigation bar and follow the instructions to complete your team registration.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>Is there a registration fee?</h3>
+            <p className={styles.faqAnswer}>Yes, there is a nominal registration fee per team. Early bird registrations get special discounts. Details will be announced soon.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>What should I bring to the hackathon?</h3>
+            <p className={styles.faqAnswer}>Bring your laptop, charger, and any other equipment you need for development. Food and refreshments will be provided during the event.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>Will there be mentors available during the hackathon?</h3>
+            <p className={styles.faqAnswer}>Yes, experienced mentors from industry and academia will be available throughout the event to guide teams and provide technical support.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>What are the judging criteria?</h3>
+            <p className={styles.faqAnswer}>Projects will be judged based on innovation, technical complexity, practical implementation, presentation, and potential impact.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>Are there any prerequisites for participating?</h3>
+            <p className={styles.faqAnswer}>Basic programming knowledge and problem-solving skills are recommended. Teams should be familiar with development tools and technologies.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>What are the prizes?</h3>
+            <p className={styles.faqAnswer}>Winners will receive exciting cash prizes, internship opportunities, sponsored goodies, and certificates. Total prize pool details will be announced soon.</p>
+          </div>
+
+          <div className={styles.faqItem}>
+            <h3 className={styles.faqQuestion}>Is accommodation provided?</h3>
+            <p className={styles.faqAnswer}>Yes, accommodation will be provided for outstation participants. Details will be shared with registered teams.</p>
           </div>
         </div>
-      </section> */}
-      <div className={styles.transitionTeamToContact}></div>
-
-      {/* Contact Section */}
-      <section ref={sections.contact} className={`${styles.pageSection} ${styles.contactSection}`}>
-        {/* Contact form content */}
       </section>
 
       {/* Footer */}
-      <footer className={styles.footer}>
+      <footer ref={sections.contact} className={styles.footer}>
+        {/* Magical sparkles */}
+        <div className={styles.sparkle}></div>
+        <div className={styles.sparkle}></div>
+        <div className={styles.sparkle}></div>
+        <div className={styles.sparkle}></div>
+        <div className={styles.sparkle}></div>
+
         <div className={styles.footerColumns}>
-          <div className={styles.footerColumn}>
+          <div className={`${styles.footerColumn} ${styles.footerColumnLinks}`}>
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#timeline">Timeline</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#sponsors">Sponsors</a></li>
+              <li><a href="/" className={styles.footerLink}>Home</a></li>
+              <li><a href="#about" className={styles.footerLink}>About</a></li>
+              <li><a href="#timeline" className={styles.footerLink}>Timeline</a></li>
+              <li><a href="#faq" className={styles.footerLink}>FAQ</a></li>
+              <li><a href="#sponsors" className={styles.footerLink}>Sponsors</a></li>
             </ul>
           </div>
-          <div className={styles.footerColumn}>
+
+          <div className={`${styles.footerColumn} ${styles.footerColumnContact}`}>
             <h3>Contact Info</h3>
-            <div className={styles.socialLinks}>
-              <a href="#" className={styles.socialIcon}>MQfX</a>
-            </div>
-          </div>
-          <div className={styles.footerColumn}>
-            <h3>Address</h3>
             <div className={styles.address}>
               NIET, Greater Noida<br/>
               Email: ekumeclub@gmail.com<br/>
-              Phone: +91 00000000
+              Phone: +91-XXXXXXXXXX
             </div>
-            <div style={{ marginTop: '1rem' }}>
-              <a href="/privacy-policy" style={{ color: '#d4af37', textDecoration: 'underline' }}>Privacy Policy</a>
+            <div className={styles.socialLinks}>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                </svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div className={`${styles.footerColumn} ${styles.footerColumnMap}`}>
+            <h3>Find Us</h3>
+            <div className={styles.mapContainer}>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0011961572512!2d77.49737147538259!3d28.62601337565966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cee3d2df45555%3A0xb3b2cc65e46e5eb2!2sNoida%20Institute%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1709726844330!5m2!1sen!2sin"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
         </div>
+
         <div className={styles.footerBottom}>
           <p>&copy; 2025 HACKXNIET 3.0. All rights reserved.</p>
         </div>
