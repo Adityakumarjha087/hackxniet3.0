@@ -442,7 +442,7 @@ export default function Register() {
                   />
                   <span>Female</span>
                 </label>
-                <label className={styles.genderOption}>
+                {/* <label className={styles.genderOption}>
                   <input
                     type="radio"
                     name={`memberGender-${index}`}
@@ -451,7 +451,7 @@ export default function Register() {
                     onChange={() => handleGenderChange('other', index)}
                   />
                   <span>Other</span>
-                </label>
+                </label> */}
               </div>
             </div>
           </div>

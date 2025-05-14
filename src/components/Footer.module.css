@@ -1,0 +1,235 @@
+.footer {
+  background-color: rgba(0, 0, 0, 0.95);
+  color: #FFD700;
+  padding: 4rem 0 0;
+  font-family: 'Cinzel', serif;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+  animation: mistFlow 8s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #FFD700;
+  position: relative;
+  padding-bottom: 0.5rem;
+  font-family: 'Harry P', serif;
+}
+
+.footerTitle::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(to right, #FFD700, transparent);
+}
+
+.contactInfo {
+  margin-bottom: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.contactIcon {
+  color: #FFD700;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.contactItem p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.socialIcon {
+  color: #FFD700;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.socialIcon:hover {
+  color: #FFA500;
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.mapContainer {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.mapContainer iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.footerBottom {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footerBottom p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+@keyframes mistFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footerContent {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+
+  .footerSection:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 0;
+  }
+
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .footerSection:last-child {
+    grid-column: span 1;
+  }
+
+  .footerTitle {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .footerTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contactItem {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactIcon {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+
+  .mapContainer {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 0 0;
+  }
+
+  .footerContent {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .footerTitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .contactItem p {
+    font-size: 0.85rem;
+  }
+
+  .socialIcon {
+    font-size: 1.3rem;
+    width: 35px;
+    height: 35px;
+  }
+
+  .mapContainer {
+    height: 150px;
+  }
+} 

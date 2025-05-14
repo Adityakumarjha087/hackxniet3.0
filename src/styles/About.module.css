@@ -1,0 +1,478 @@
+@font-face {
+  font-family: 'Harry P';
+  src: url('/fonts/HARRYP__.TTF') format('truetype');
+}
+
+.aboutSection {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #030304 0%, #050508 50%, #070812 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.aboutOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.03), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 165, 0, 0.03), transparent 40%),
+    url('/images/adi3.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.aboutContainer {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.sectionHeading h2 {
+  font-family: 'Harry P', cursive;
+  font-size: 5rem;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.5);
+  letter-spacing: 4px;
+  position: relative;
+  animation: magicalFloat 3s ease-in-out infinite;
+}
+
+.sectionHeading h2::before,
+.sectionHeading h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+}
+
+.sectionHeading h2::before {
+  right: calc(100% + 20px);
+}
+
+.sectionHeading h2::after {
+  left: calc(100% + 20px);
+}
+
+.headingUnderline {
+  width: 200px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+  margin: 1rem auto;
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.headingUnderline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.aboutCard {
+  background: rgba(8, 8, 12, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  clip-path: polygon(
+    0% 20px,
+    20px 0%,
+    calc(100% - 20px) 0%,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0% calc(100% - 20px)
+  );
+}
+
+.aboutCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 215, 0, 0.8),
+    rgba(255, 165, 0, 0.6),
+    transparent 60%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.aboutCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.2);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+}
+
+.cardContent h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0 0 1.5rem 0;
+  position: relative;
+  letter-spacing: 2px;
+}
+
+.cardContent p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.highlight {
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+  position: relative;
+  display: inline-block;
+  padding: 0 4px;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 215, 0, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.aboutCard:hover .highlight::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.registrationBanner {
+  background: rgba(13, 13, 20, 0.95);
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  clip-path: polygon(
+    0% 20px,
+    20px 0%,
+    calc(100% - 20px) 0%,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0% calc(100% - 20px)
+  );
+}
+
+.registrationBanner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 215, 0, 0.8),
+    rgba(255, 165, 0, 0.6),
+    transparent 60%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderGlow 3s linear infinite;
+}
+
+.registrationText {
+  font-family: 'Harry P', cursive;
+  font-size: 4rem;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 3px;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(255, 215, 0, 0.5);
+  animation: magicalFloat 3s ease-in-out infinite;
+}
+
+@keyframes magicalFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.teamInfo {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.socialSection {
+  text-align: center;
+  padding-top: 2rem;
+  position: relative;
+}
+
+.socialSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+}
+
+.socialSection h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.socialLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 20, 30, 0.8);
+  border-radius: 50%;
+  color: #FFD700;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.socialLink::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.socialLink:hover::before {
+  opacity: 0.2;
+}
+
+.socialLink:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes borderGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .aboutContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, #030304 0%, #08081a 50%, #0a0f1d 100%);
+  }
+
+  .sectionHeading h2 {
+    font-size: 4rem;
+  }
+
+  .sectionHeading h2::before,
+  .sectionHeading h2::after {
+    width: 50px;
+  }
+
+  .aboutCard {
+    padding: 1.5rem;
+    clip-path: polygon(
+      0% 15px,
+      15px 0%,
+      calc(100% - 15px) 0%,
+      100% 15px,
+      100% calc(100% - 15px),
+      calc(100% - 15px) 100%,
+      15px 100%,
+      0% calc(100% - 15px)
+    );
+    background: rgba(10, 10, 15, 0.95);
+  }
+
+  .cardContent h3 {
+    font-size: 1.6rem;
+  }
+
+  .registrationText {
+    font-size: 3rem;
+  }
+
+  .teamInfo {
+    font-size: 1.1rem;
+  }
+
+  .socialSection h3 {
+    font-size: 1.8rem;
+  }
+
+  .socialLinks {
+    gap: 1.5rem;
+  }
+
+  .socialLink {
+    width: 40px;
+    height: 40px;
+  }
+
+  .registrationBanner {
+    background: rgba(10, 10, 15, 0.98);
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionHeading h2 {
+    font-size: 3rem;
+  }
+
+  .aboutCard {
+    padding: 1.2rem;
+    clip-path: polygon(
+      0% 10px,
+      10px 0%,
+      calc(100% - 10px) 0%,
+      100% 10px,
+      100% calc(100% - 10px),
+      calc(100% - 10px) 100%,
+      10px 100%,
+      0% calc(100% - 10px)
+    );
+    background: rgba(8, 8, 12, 0.98);
+  }
+
+  .cardContent h3 {
+    font-size: 1.4rem;
+  }
+
+  .registrationText {
+    font-size: 2.5rem;
+  }
+
+  .socialSection h3 {
+    font-size: 1.6rem;
+  }
+
+  .socialLinks {
+    gap: 1rem;
+  }
+
+  .socialLink {
+    width: 36px;
+    height: 36px;
+  }
+} 

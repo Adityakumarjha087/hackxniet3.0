@@ -1,0 +1,266 @@
+.gallerySection {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #050508 0%, #0d0d1a 50%, #0f1525 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.galleryOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 107, 107, 0.02), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.02), transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.galleryContainer {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.sectionHeading h2 {
+  font-family: 'Harry P', serif;
+  font-size: 4rem;
+  color: #d4af37;
+  margin: 0;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  letter-spacing: 2px;
+}
+
+.headingUnderline {
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 1rem auto;
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.headingUnderline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: shimmer 2s infinite;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.galleryItem {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(13, 13, 20, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  aspect-ratio: 4/3;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.1);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.viewText {
+  color: #d4af37;
+  font-family: 'Harry P', serif;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.galleryItem:hover .imageOverlay {
+  opacity: 1;
+}
+
+.galleryItem:hover .viewText {
+  transform: translateY(0);
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sectionHeading h2 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallerySection {
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #030304 0%, #08081a 50%, #0a0f1d 100%);
+  }
+
+  .sectionHeading h2 {
+    font-size: 3rem;
+  }
+
+  .galleryGrid {
+    gap: 1.5rem;
+  }
+
+  .viewText {
+    font-size: 1.8rem;
+  }
+
+  .galleryItem {
+    background: rgba(10, 10, 15, 0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallerySection {
+    padding: 3rem 1rem;
+  }
+
+  .sectionHeading h2 {
+    font-size: 2.5rem;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .viewText {
+    font-size: 1.6rem;
+  }
+
+  .galleryItem {
+    background: rgba(8, 8, 12, 0.95);
+  }
+}
+
+/* Modal styles needed for the TypeScript component */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 5, 8, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  background: #0d0d1a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+.modalImage {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.modalTitle {
+  padding: 1rem;
+  color: #d4af37;
+  text-align: center;
+  font-family: 'Harry P', serif;
+  font-size: 2rem;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #d4af37;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.closeButton:hover {
+  background: rgba(212, 175, 55, 0.2);
+  transform: scale(1.1);
+} 

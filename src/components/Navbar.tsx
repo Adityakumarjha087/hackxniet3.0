@@ -1,123 +1,99 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import styles from '../styles/Navbar.module.css';
 
-const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'Events', path: '/events' },
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
-];
-
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
+const Navbar: React.FC = () => {
+  const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setNavbarScrolled(window.scrollY > 50);
+      
+      // Update active section based on scroll position
+      const sections = document.querySelectorAll('section[id]');
+      sections.forEach((section) => {
+        const element = section as HTMLElement;
+        const sectionTop = element.offsetTop;
+        const sectionHeight = element.clientHeight;
+        if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+          setActiveSection(element.id);
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const sections = {
+    home: 'home',
+    about: 'about',
+    themes: 'themes',
+    timeline: 'timeline',
+    gallery: 'gallery',
+    faq: 'faq',
+    contact: 'contact'
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 80; // Approximate navbar height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      setActiveSection(sectionId);
+      setIsMobileMenuOpen(false); // Close mobile menu after clicking
+    }
+  };
+
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex-shrink-0"
-          >
-            <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
-              HackX
-            </Link>
-          </motion.div>
-
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={`relative group px-3 py-2 text-sm font-medium transition-colors duration-300 ${
-                    pathname === item.path
-                      ? 'text-purple-600'
-                      : 'text-gray-700 hover:text-purple-600'
-                  }`}
-                >
-                  {item.name}
-                  <motion.span
-                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 transform origin-left transition-transform duration-300 ${
-                      pathname === item.path ? 'scale-x-100' : 'scale-x-0'
-                    } group-hover:scale-x-100`}
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="hidden md:block"
-          >
-            <Link
-              href="/register"
-              className="relative inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-blue-500 rounded-full overflow-hidden group"
-            >
-              <span className="relative z-10">Register Now</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={false}
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </Link>
-          </motion.div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-purple-600 focus:outline-none"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+    <nav className={`${styles.navbar} ${navbarScrolled ? styles.navbarScrolled : ''}`}>
+      <div className={styles.navContent}>
+        <button 
+          className={styles.mobileMenuButton}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={`${styles.hamburger} ${isMobileMenuOpen ? styles.open : ''}`}></span>
+        </button>
+        
+        <ul className={`${styles.navList} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          {Object.entries({
+            home: 'HOME',
+            about: 'ABOUT US',
+            themes: 'THEMES',
+            gallery: 'GALLERY',
+            faq: 'FAQ',
+            contact: 'CONTACT US'
+          }).map(([key, label]) => (
+            <li key={key}>
+              <button
+                onClick={() => scrollToSection(sections[key as keyof typeof sections])}
+                className={`${styles.navLink} ${activeSection === key ? styles.activeLink : ''}`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
+                {label}
+              </button>
+            </li>
+          ))}
+        </ul>
+        
+        <div className={styles.registerWrapper}>            
+          <Link href="/register">
+            <button className={styles.registerNavButton}>REGISTER</button>
+          </Link>
         </div>
-      </nav>
-    </motion.header>
+      </div>
+    </nav>
   );
 };
 

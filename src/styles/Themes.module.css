@@ -1,0 +1,291 @@
+.themesSection {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #030304 0%, #050508 50%, #070812 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.themesOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 107, 107, 0.01), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.01), transparent 40%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.themesContainer {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionHeading {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.sectionHeading h2 {
+  font-family: 'Harry P', serif;
+  font-size: 4rem;
+  color: #d4af37;
+  margin: 0;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  letter-spacing: 2px;
+}
+
+.headingUnderline {
+  width: 100px;
+  height: 3px;
+  background: #d4af37;
+  margin: 1rem auto;
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.headingUnderline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: shimmer 2s infinite;
+}
+
+.themesTitle {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 4rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.themesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 1rem;
+}
+
+.themeCard {
+  position: relative;
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  background: rgba(8, 8, 12, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  overflow: hidden;
+  min-height: 350px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.themeContent {
+  position: relative;
+  z-index: 2;
+}
+
+.themeGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.themeIconWrapper {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.themeIcon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.themeTitle {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.8rem;
+  color: #d4af37;
+  margin: 0 0 1.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.themeDivider {
+  width: 50px;
+  height: 2px;
+  background: #d4af37;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.themeDescription {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .themesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .themesSection {
+    padding: 4rem 1.5rem;
+    background: linear-gradient(135deg, #030304 0%, #08081a 50%, #0a0f1d 100%);
+  }
+
+  .sectionHeading h2 {
+    font-size: 3rem;
+  }
+
+  .themesTitle {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .themesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .themeCard {
+    background: rgba(10, 10, 15, 0.95);
+    padding: 2rem;
+    min-height: auto;
+  }
+
+  .themeIconWrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.5rem;
+  }
+
+  .themeIcon {
+    font-size: 2rem;
+  }
+
+  .themeTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .themeDescription {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .themesSection {
+    padding: 3rem 1rem;
+  }
+
+  .sectionHeading h2 {
+    font-size: 2.5rem;
+  }
+
+  .themesTitle {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .themeCard {
+    background: rgba(8, 8, 12, 0.98);
+  }
+
+  .themeIconWrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .themeIcon {
+    font-size: 1.8rem;
+  }
+
+  .themeTitle {
+    font-size: 1.3rem;
+  }
+
+  .themeDescription {
+    font-size: 0.95rem;
+  }
+}
+
+/* Theme Card Hover Effects */
+.themeCard:hover {
+  background: rgba(10, 10, 15, 0.98);
+  border-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+.themeCard:hover .themeIconWrapper {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Add a subtle animated gradient overlay */
+.themeCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.themeCard:hover::before {
+  opacity: 1;
+} 
