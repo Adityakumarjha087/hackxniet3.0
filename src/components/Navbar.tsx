@@ -34,12 +34,18 @@ const Navbar: React.FC = () => {
     about: 'about',
     themes: 'themes',
     timeline: 'timeline',
-    gallery: 'gallery',
+    team: '/team',
     faq: 'faq',
     contact: 'contact'
   };
 
   const scrollToSection = (sectionId: string) => {
+    // If it's a page route (starts with '/'), use router navigation
+    if (sectionId.startsWith('/')) {
+      window.location.href = sectionId;
+      return;
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       const navbarHeight = 80; // Approximate navbar height
@@ -72,7 +78,7 @@ const Navbar: React.FC = () => {
             home: 'HOME',
             about: 'ABOUT US',
             themes: 'THEMES',
-            gallery: 'GALLERY',
+            team: 'TEAM',
             faq: 'FAQ',
             contact: 'CONTACT US'
           }).map(([key, label]) => (
