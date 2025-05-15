@@ -1,3 +1,38 @@
+
+HackX NIET 3.0 - Official Website
+
+This is the official website for HackX NIET 3.0 built to provide a smooth and engaging experience for hackathon participants and visitors. The site is developed using Next.js with TypeScript styled using Tailwind CSS and connected to a MySQL database for handling dynamic data.
+
+Live Website
+Visit Now: https://hackxniet3-0.vercel.app
+
+Project Overview
+
+Purpose:
+To create a fast responsive and visually appealing landing page and registration platform for the HackX NIET 3.0 hackathon event.
+
+Tech Stack Used
+
+Frontend Framework: Next.js (with TypeScript)
+
+Styling: Tailwind CSS
+
+Database: MySQL
+
+Deployment: Vercel
+
+Key Features
+
+Smooth scrolling and responsive layout
+
+Transparent navbar with fixed positioning
+
+Register button opens a dedicated registration page without scroll jump
+
+Dark theme UI for a modern look
+
+Optimized for performance and accessibility
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
